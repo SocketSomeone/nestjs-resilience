@@ -4,8 +4,5 @@
 	},
 	"github": {
 		"release": true
-	},
-	"hooks": {
-		"after:git:release": "npm run changelog"
 	}
 }
