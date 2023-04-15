@@ -1,5 +1,5 @@
 {
-	"name": "nestjs-open-source-template",
+	"name": "nestjs-resilience",
 	"description": "\uD83D\uDCDC My template for creating NestJS Open Source projects",
 	"version": "5.5.4",
 	"scripts": {
@@ -25,10 +25,10 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/SocketSomeone/nestjs-open-source-template"
+		"url": "https://github.com/SocketSomeone/nestjs-resilience"
 	},
 	"bugs": {
-		"url": "https://github.com/SocketSomeone/nestjs-open-source-template"
+		"url": "https://github.com/SocketSomeone/nestjs-resilience"
 	},
 	"author": "Alexey Filippov <socket.someone@gmail.com>",
 	"contributors": [

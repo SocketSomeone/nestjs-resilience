@@ -22,7 +22,7 @@ jobs:
       - name: Check previous released version
         id: pre-release
         run: |
-          if [[ $(npm view nestjs-open-source-template@dev version | grep -e "$(jq --raw-output '.version' package.json)-dev.*.$(git rev-parse --short HEAD | cut -b1-3)") ]]; \
+          if [[ $(npm view nestjs-resilience@dev version | grep -e "$(jq --raw-output '.version' package.json)-dev.*.$(git rev-parse --short HEAD | cut -b1-3)") ]]; \
           then echo '::set-output name=release::false'; \
           else echo '::set-output name=release::true'; fi
 
@@ -31,7 +31,7 @@ jobs:
 
       - name: Deprecate old versions
         if: steps.pre-release.outputs.release == 'true'
-        run: 'npx @favware/npm-deprecate --name "*dev*" --package "nestjs-open-source-template"'
+        run: 'npx @favware/npm-deprecate --name "*dev*" --package "nestjs-resilience"'
         env:
             NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

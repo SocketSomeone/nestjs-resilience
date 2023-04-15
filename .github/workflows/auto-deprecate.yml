@@ -22,6 +22,6 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Deprecate versions
-        run: 'npx @favware/npm-deprecate --name "*dev*" --package "nestjs-open-source-template"'
+        run: 'npx @favware/npm-deprecate --name "*dev*" --package "nestjs-resilience"'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
