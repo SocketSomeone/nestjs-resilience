@@ -7,10 +7,10 @@
 </p>
 
 <p align="center">
-    <a href='https://img.shields.io/npm/v/necord'><img src="https://img.shields.io/npm/v/necord" alt="NPM Version" /></a>
-    <a href='https://img.shields.io/npm/l/necord'><img src="https://img.shields.io/npm/l/necord" alt="NPM License" /></a>
-    <a href='https://img.shields.io/npm/dm/necord'><img src="https://img.shields.io/npm/dm/necord" alt="NPM Downloads" /></a>
-    <a href='https://img.shields.io/github/last-commit/SocketSomeone/necord'><img src="https://img.shields.io/github/last-commit/SocketSomeone/necord" alt="Last commit" /></a>
+    <a href='https://img.shields.io/npm/v/nestjs-resilience'><img src="https://img.shields.io/npm/v/nestjs-resilience" alt="NPM Version" /></a>
+    <a href='https://img.shields.io/npm/l/nestjs-resilience'><img src="https://img.shields.io/npm/l/nestjs-resilience" alt="NPM License" /></a>
+    <a href='https://img.shields.io/npm/dm/nestjs-resilience'><img src="https://img.shields.io/npm/dm/nestjs-resilience" alt="NPM Downloads" /></a>
+    <a href='https://img.shields.io/github/last-commit/SocketSomeone/nestjs-resilience'><img src="https://img.shields.io/github/last-commit/SocketSomeone/nestjs-resilience" alt="Last commit" /></a>
 </p>
 
 ## About
@@ -22,10 +22,6 @@ application can handle failures and recover quickly from them.
 With NestJS Resilience, you can easily configure these patterns for your application, allowing you to improve the reliability and
 fault-tolerance of your services. Whether you're building a high-traffic web application or a distributed system, NestJS Resilience provides
 the tools you need to build robust, failure-resistant services that can withstand even the most challenging environments.
-
-In addition to these core patterns, NestJS Resilience also provides support for other reliability-related features, such as rate limiting,
-caching, and logging. These features work together to give you a comprehensive toolkit for building reliable, high-performance applications
-that can handle whatever challenges come your way.
 
 **Features**
 
