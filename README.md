@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-    A module for reliability and fault-tolerance of your <a href="https://nestjs.com/" target="_blank">NestJS</a> applications.
+    A module for improving the reliability and fault-tolerance of your <a href="https://nestjs.com/" target="_blank">NestJS</a> applications
 </p>
 
 <p align="center">
