@@ -25,8 +25,8 @@ the tools you need to build robust, failure-resistant services that can withstan
 
 **Features**
 
-- **Retry** - Automatically retry failed requests
 - **Circuit Breaker** - Automatically fail fast when a service is unavailable
+- **Retry** - Automatically retry failed requests
 - **Timeout** - Automatically fail fast when a service is taking too long to respond
 - **Bulkhead** - Limit the number of concurrent requests to a service
 - **Fallback** - Provide a fallback response when a service is unavailable
