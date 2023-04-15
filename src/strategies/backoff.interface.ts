@@ -3,5 +3,5 @@ export interface BackoffOptions {
 }
 
 export interface Backoff {
-	getDelay(maxRetries: number): Generator<number, void, number>;
+	getGenerator(maxRetries: number): Generator<number>;
 }

@@ -7,7 +7,7 @@ export class ExponentialBackoff implements Backoff {
 		this.baseDelay = options.baseDelay || 100;
 	}
 
-	public *getDelay(maxRetries: number): Generator<number, void, number> {
+	public *getGenerator(maxRetries: number): Generator<number, void, number> {
 		let attempt = 0;
 
 		while (attempt < maxRetries) {

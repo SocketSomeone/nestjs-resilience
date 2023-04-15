@@ -7,7 +7,7 @@ export class FibonacciBackoff implements Backoff {
 		this.baseDelay = options.baseDelay || 100;
 	}
 
-	public *getDelay(maxRetries: number): Generator<number, void, number> {
+	public *getGenerator(maxRetries: number): Generator<number, void, number> {
 		let attempt = 0,
 			previous = 0,
 			current = 1;
