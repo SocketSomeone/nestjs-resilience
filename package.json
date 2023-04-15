@@ -1,7 +1,7 @@
 {
 	"name": "nestjs-resilience",
-	"description": "\uD83D\uDCDC My template for creating NestJS Open Source projects",
-	"version": "5.5.4",
+	"description": "A module for reliability and fault-tolerance of your NestJS applications",
+	"version": "1.0.0",
 	"scripts": {
 		"build": "rimraf dist && tsc -p tsconfig.build.json",
 		"prepublish:npm": "npm run build",
@@ -21,7 +21,20 @@
 	},
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
-	"keywords": [],
+	"keywords": [
+		"nestjs",
+		"resilience",
+		"fault-tolerance",
+		"reliability",
+		"retry",
+		"timeout",
+		"bulkhead",
+		"circuit-breaker",
+		"rate-limiting",
+		"cache",
+		"nest",
+		"hystrix"
+	],
 	"license": "MIT",
 	"repository": {
 		"type": "git",

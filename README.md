@@ -1,10 +1,16 @@
-# NestJS Resilience
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+</p>
 
-<p align="left">
-    <a href='https://img.shields.io/npm/v/nestjs-resilience'><img src="https://img.shields.io/npm/v/nestjs-resilience" alt="NPM Version" /></a>
-    <a href='https://img.shields.io/npm/l/nestjs-resilience'><img src="https://img.shields.io/npm/l/nestjs-resilience" alt="NPM License" /></a>
-    <a href='https://img.shields.io/npm/dm/nestjs-resilience'><img src="https://img.shields.io/npm/dm/nestjs-resilience" alt="NPM Downloads" /></a>
-    <a href='https://img.shields.io/github/last-commit/nestjs-resiliencejs/nestjs-resilience'><img src="https://img.shields.io/github/last-commit/SocketSomeone/nestjs-resilience" alt="Last commit" /></a>
+<p align="center">
+    A module for reliability and fault-tolerance of your <a href="https://nestjs.com/" target="_blank">NestJS</a> applications.
+</p>
+
+<p align="center">
+    <a href='https://img.shields.io/npm/v/necord'><img src="https://img.shields.io/npm/v/necord" alt="NPM Version" /></a>
+    <a href='https://img.shields.io/npm/l/necord'><img src="https://img.shields.io/npm/l/necord" alt="NPM License" /></a>
+    <a href='https://img.shields.io/npm/dm/necord'><img src="https://img.shields.io/npm/dm/necord" alt="NPM Downloads" /></a>
+    <a href='https://img.shields.io/github/last-commit/SocketSomeone/necord'><img src="https://img.shields.io/github/last-commit/SocketSomeone/necord" alt="Last commit" /></a>
 </p>
 
 ## About
