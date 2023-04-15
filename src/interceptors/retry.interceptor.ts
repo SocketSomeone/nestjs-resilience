@@ -1,5 +1,5 @@
 import { RetryOptions } from '../interface';
-import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
+import { CallHandler, ExecutionContext, Injectable, NestInterceptor, Type } from '@nestjs/common';
 import { FixedBackoff } from '../strategies';
 import { Observable, retry, throwError, timer } from 'rxjs';
 import { RuntimeException } from '@nestjs/core/errors/exceptions';
@@ -10,7 +10,7 @@ export function RetryInterceptor({
 	maxRetries = 5,
 	scaleFactor = 1,
 	backoff = new FixedBackoff()
-}: RetryOptions = {}) {
+}: RetryOptions = {}): Type<NestInterceptor> {
 	if (scaleFactor <= 0) {
 		throw new RuntimeException('Scale factor must be greater than 0, got: ' + scaleFactor);
 	}
@@ -33,12 +33,9 @@ export function RetryInterceptor({
 						}
 
 						const { value, done } = generator.next();
+						const delay = done ? maxDelay : value * scaleFactor;
 
-						if (done) {
-							return timer(maxDelay);
-						}
-
-						return timer(Math.min(value * scaleFactor, maxDelay));
+						return timer(Math.max(0, Math.min(delay, maxDelay)));
 					}
 				})
 			);
