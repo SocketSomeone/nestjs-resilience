@@ -1,0 +1,44 @@
+name: Publish dev
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */12 * * *'
+jobs:
+  npm:
+    name: npm
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Node v16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+          cache: yarn
+          cache-dependency-path: yarn.lock
+
+      - name: Check previous released version
+        id: pre-release
+        run: |
+          if [[ $(npm view nestjs-open-source-template@dev version | grep -e "$(jq --raw-output '.version' package.json)-dev.*.$(git rev-parse --short HEAD | cut -b1-3)") ]]; \
+          then echo '::set-output name=release::false'; \
+          else echo '::set-output name=release::true'; fi
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Deprecate old versions
+        if: steps.pre-release.outputs.release == 'true'
+        run: 'npx @favware/npm-deprecate --name "*dev*" --package "nestjs-open-source-template"'
+        env:
+            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish
+        if: steps.pre-release.outputs.release == 'true'
+        run: |
+          npm version --git-tag-version=false $(jq --raw-output '.version' package.json)-dev.$(date +%s).$(git rev-parse --short HEAD)
+          npm run publish:dev || true
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

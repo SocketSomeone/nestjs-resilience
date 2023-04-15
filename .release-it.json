@@ -1,0 +1,11 @@
+{
+	"git": {
+		"commitMessage": "chore: release v${version}"
+	},
+	"github": {
+		"release": true
+	},
+	"hooks": {
+		"after:git:release": "npm run changelog"
+	}
+}
