@@ -1,13 +1,7 @@
-import { Backoff, BackoffOptions } from './backoff.interface';
 import { Random } from '../utils';
+import { Backoff } from './base.backoff';
 
-export class EqualJitterBackoff implements Backoff {
-	private readonly baseDelay: number;
-
-	public constructor(options: BackoffOptions = {}) {
-		this.baseDelay = options.baseDelay || 100;
-	}
-
+export class EqualJitterBackoff extends Backoff {
 	public *getGenerator(maxRetries: number): Generator<number, void, number> {
 		let attempt = 0;
 

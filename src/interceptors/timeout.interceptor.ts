@@ -1,4 +1,3 @@
-import { TimeoutOptions } from '../interface';
 import {
 	CallHandler,
 	ExecutionContext,
@@ -8,6 +7,7 @@ import {
 	Type
 } from '@nestjs/common';
 import { catchError, Observable, throwError, timeout, TimeoutError } from 'rxjs';
+import { TimeoutOptions } from '../strategies';
 
 export function TimeoutInterceptor({
 	timeout: value = 1000

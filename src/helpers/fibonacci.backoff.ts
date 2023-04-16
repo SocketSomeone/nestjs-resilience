@@ -1,12 +1,6 @@
-import { Backoff, BackoffOptions } from './backoff.interface';
+import { Backoff } from './base.backoff';
 
-export class FibonacciBackoff implements Backoff {
-	private readonly baseDelay: number;
-
-	public constructor(options: BackoffOptions = {}) {
-		this.baseDelay = options.baseDelay || 100;
-	}
-
+export class FibonacciBackoff extends Backoff {
 	public *getGenerator(maxRetries: number): Generator<number, void, number> {
 		let attempt = 0,
 			previous = 0,

@@ -1,13 +1,7 @@
-import { Backoff, BackoffOptions } from './backoff.interface';
+import { Backoff } from './base.backoff';
 
-export class DecorrelatedJitterBackoff implements Backoff {
+export class DecorrelatedJitterBackoff extends Backoff {
 	private static readonly RP_SCALING_FACTOR = 1 / 1.4;
-
-	private readonly baseDelay: number;
-
-	public constructor(options: BackoffOptions = {}) {
-		this.baseDelay = options.baseDelay || 100;
-	}
 
 	public *getGenerator(maxRetries: number): Generator<number, void, number> {
 		let attempt = 0,

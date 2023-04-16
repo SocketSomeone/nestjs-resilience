@@ -1,22 +1,9 @@
-import { RetryOptions } from '../interface';
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor, Type } from '@nestjs/common';
-import { FixedBackoff } from '../strategies';
-import { Observable, retry, throwError, timer } from 'rxjs';
-import { RuntimeException } from '@nestjs/core/errors/exceptions';
+import { Observable } from 'rxjs';
+import { RetryOptions, RetryStrategy } from '../strategies/retry.strategy';
 
-export function RetryInterceptor({
-	retryable = () => true,
-	maxDelay = 30000,
-	maxRetries = 5,
-	scaleFactor = 1,
-	backoff = new FixedBackoff()
-}: RetryOptions = {}): Type<NestInterceptor> {
-	if (scaleFactor <= 0) {
-		throw new RuntimeException('Scale factor must be greater than 0, got: ' + scaleFactor);
-	}
-
-	const strategy = typeof backoff === 'function' ? new backoff() : backoff;
-	const generator = strategy.getGenerator(maxRetries);
+export function RetryInterceptor(options: RetryOptions = {}): Type<NestInterceptor> {
+	const strategy = new RetryStrategy(options);
 
 	@Injectable()
 	class Interceptor implements NestInterceptor {
@@ -24,21 +11,7 @@ export function RetryInterceptor({
 			context: ExecutionContext,
 			next: CallHandler<any>
 		): Observable<any> | Promise<Observable<any>> {
-			return next.handle().pipe(
-				retry({
-					count: maxRetries,
-					delay: (error, retryCount) => {
-						if (!retryable(error, retryCount)) {
-							return throwError(() => error);
-						}
-
-						const { value, done } = generator.next();
-						const delay = done ? maxDelay : value * scaleFactor;
-
-						return timer(Math.max(0, Math.min(delay, maxDelay)));
-					}
-				})
-			);
+			return strategy.execute(next.handle());
 		}
 	}
 
