@@ -1,7 +1,7 @@
 import { Strategy } from './base.strategy';
 import { Backoff, FixedBackoff } from '../helpers';
 import { Type } from '@nestjs/common';
-import { Observable, retry, throwError, timer } from 'rxjs';
+import { Observable, retry, timer } from 'rxjs';
 
 export interface RetryOptions {
 	maxRetries?: number;
@@ -46,13 +46,13 @@ export class RetryStrategy extends Strategy<RetryOptions> {
 				count: this.options.maxRetries,
 				delay: error => {
 					if (!this.options.retryable(error)) {
-						return throwError(() => error);
+						throw error;
 					}
 
 					const { value, done } = generator.next();
 
 					if (done) {
-						return throwError(() => error);
+						throw error;
 					}
 
 					const delay = value * this.options.scaleFactor;

@@ -1,6 +1,7 @@
 export * from './enum';
 export * from './interceptors';
 export * from './helpers';
+export * from './strategies';
 export * from './utils';
 
 export * from './resilience.constants';
