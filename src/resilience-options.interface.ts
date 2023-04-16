@@ -1,1 +1,3 @@
-export interface ResilienceModuleOptions {}
+export interface ResilienceModuleOptions {
+	global?: boolean;
+}
