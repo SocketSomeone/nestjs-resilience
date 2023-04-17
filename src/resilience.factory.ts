@@ -1,4 +1,4 @@
-import { Injectable, Type } from '@nestjs/common';
+import { Injectable, Logger, Type } from '@nestjs/common';
 import {
 	RetryOptions,
 	RetryStrategy,
@@ -7,13 +7,12 @@ import {
 	TimeoutStrategy
 } from './strategies';
 
-interface InstanceOptions {
-	groupId: string;
-	name: string;
-}
-
 @Injectable()
 export class ResilienceFactory {
+	private readonly logger = new Logger(ResilienceFactory.name);
+
+	private readonly instances: Map<string, Strategy<any>> = new Map();
+
 	public createRetryStrategy(options: RetryOptions) {
 		return this.createStrategy(RetryStrategy, options);
 	}
@@ -24,5 +23,9 @@ export class ResilienceFactory {
 
 	public createStrategy<T>(strategy: Type<Strategy<T>>, options: T) {
 		return new strategy(options);
+	}
+
+	public getStorage<T>() {
+		return this.instances;
 	}
 }

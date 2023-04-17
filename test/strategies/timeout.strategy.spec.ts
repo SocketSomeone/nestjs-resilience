@@ -1,6 +1,6 @@
-import { TimeoutStrategy } from '../src/strategies';
+import { TimeoutStrategy } from '../../src/strategies';
 import { delay, of } from 'rxjs';
-import { ResilienceTimeoutException } from '../src/exceptions';
+import { ResilienceTimeoutException } from '../../src/exceptions';
 
 describe('Timeout Strategy', () => {
 	const strategy = new TimeoutStrategy({ timeout: 100 });
@@ -40,6 +40,14 @@ describe('Timeout Strategy', () => {
 			.then(value => {
 				expect(value).toBe(1000);
 				done();
+			});
+	});
+
+	it('should be able throw error if not time err', function () {
+		strategy
+			.execute(() => Promise.reject(new Error('Test')))
+			.catch(error => {
+				expect(error.message).toBe('Test');
 			});
 	});
 });

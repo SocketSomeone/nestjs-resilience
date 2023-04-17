@@ -12,7 +12,7 @@ describe('Resilience Factory', () => {
 	});
 
 	it('should be able to create a timeout strategy', () => {
-		const timeoutStrategy = factory.createStrategy(TimeoutStrategy, {});
+		const timeoutStrategy = factory.createStrategy(TimeoutStrategy, { timeout: 1000 });
 
 		expect(timeoutStrategy).toBeDefined();
 		expect(timeoutStrategy).toHaveProperty('execute');
