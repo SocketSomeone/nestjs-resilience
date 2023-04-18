@@ -10,59 +10,40 @@ describe('Retry Strategy', () => {
 		retryable: () => true
 	});
 
-	it('should exceed retry limit', async () => {
-		const clone = strategy.clone();
-		clone.updateOption('maxRetries', 2);
+	let count = 0;
 
-		let count = 0;
-
-		await clone
-			.execute(async () => {
-				count += 1;
-
-				if (count !== 3) {
-					throw new Error('Test');
-				}
-			})
-			.catch(error => {
-				expect(error.message).toBe('Test');
-			});
-	});
-
-	it('should be able to retry a promise', async () => {
-		let count = 0;
-
-		const value = await strategy.execute(async () => {
+	const observable = of(1).pipe(
+		tap(() => {
 			count += 1;
 
 			if (count !== 3) {
 				throw new Error('Test');
 			}
+		})
+	);
 
-			return 1000;
+	beforeEach(() => {
+		count = 0;
+	});
+
+	it('should exceed retry limit', done => {
+		const clone = strategy.clone();
+		clone.updateOption('maxRetries', 2);
+
+		clone.process(observable).subscribe({
+			error: err => {
+				expect(err.message).toBe('Test');
+				expect(count).toBe(2);
+				done();
+			}
 		});
-
-		expect(value).toBe(1000);
 	});
 
 	it('should be able to retry an observable', done => {
-		let count = 0;
-
-		const observable = of(1000).pipe(
-			tap(() => {
-				count += 1;
-
-				if (count !== 3) {
-					throw new Error('Test');
-				}
-
-				return 1000;
-			})
-		);
-
-		strategy.execute(observable).subscribe({
+		strategy.process(observable).subscribe({
 			next: value => {
-				expect(value).toBe(1000);
+				expect(value).toBe(1);
+				expect(count).toBe(3);
 			},
 			complete: () => {
 				done();

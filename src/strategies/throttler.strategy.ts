@@ -42,7 +42,7 @@ export class ThrottlerStrategy extends Strategy<ThrottlerOptions> {
 		return observable;
 	}
 
-	private get isLimitReached(): boolean {
+	public get isLimitReached(): boolean {
 		return this.records.length >= this.options.limit;
 	}
 }

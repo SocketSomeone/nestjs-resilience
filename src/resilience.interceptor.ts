@@ -23,7 +23,7 @@ export function ResilienceInterceptor<T>(
 			context: ExecutionContext,
 			next: CallHandler<any>
 		): Observable<any> | Promise<Observable<any>> {
-			return this.strategy.execute(next.handle());
+			return this.strategy.process(next.handle());
 		}
 	}
 

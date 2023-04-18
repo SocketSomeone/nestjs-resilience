@@ -19,11 +19,11 @@ export class BulkheadStrategy extends Strategy<BulkheadOptions> {
 
 	private queue$ = new Subject<Observable<any>>();
 
-	private get executionSlots(): number {
+	public get executionSlots(): number {
 		return this.options.maxConcurrent - this.active;
 	}
 
-	private get queueSlots(): number {
+	public get queueSlots(): number {
 		return this.options.maxQueue - this.queue.length;
 	}
 

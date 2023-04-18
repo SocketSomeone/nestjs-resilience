@@ -7,7 +7,7 @@ describe('Resilience Factory', () => {
 		const retryStrategy = factory.createRetryStrategy({});
 
 		expect(retryStrategy).toBeDefined();
-		expect(retryStrategy).toHaveProperty('execute');
+		expect(retryStrategy).toHaveProperty('process');
 		expect(retryStrategy).toBeInstanceOf(RetryStrategy);
 	});
 
@@ -15,7 +15,7 @@ describe('Resilience Factory', () => {
 		const timeoutStrategy = factory.createStrategy(TimeoutStrategy, { timeout: 1000 });
 
 		expect(timeoutStrategy).toBeDefined();
-		expect(timeoutStrategy).toHaveProperty('execute');
+		expect(timeoutStrategy).toHaveProperty('process');
 		expect(timeoutStrategy).toBeInstanceOf(TimeoutStrategy);
 	});
 });
