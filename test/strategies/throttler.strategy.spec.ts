@@ -1,10 +1,10 @@
 import { Observable } from 'rxjs';
-import { ThrottlerException, ThrottlerOptions, ThrottlerStrategy } from '../../src';
+import { ThrottleOptions, ThrottlerException, ThrottleStrategy } from '../../src';
 
 describe('ThrottlerStrategy', () => {
 	describe('constructor', () => {
 		it('should set default options if none provided', () => {
-			const strategy = new ThrottlerStrategy();
+			const strategy = new ThrottleStrategy();
 			expect(strategy['options']).toEqual({
 				ttl: 1000,
 				limit: 10
@@ -12,36 +12,36 @@ describe('ThrottlerStrategy', () => {
 		});
 
 		it('should set provided options', () => {
-			const options: ThrottlerOptions = {
+			const options: ThrottleOptions = {
 				ttl: 500,
 				limit: 5
 			};
-			const strategy = new ThrottlerStrategy(options);
+			const strategy = new ThrottleStrategy(options);
 			expect(strategy['options']).toEqual(options);
 		});
 
 		it('should throw error if ttl is less than or equal to 0', () => {
-			const options: ThrottlerOptions = {
+			const options: ThrottleOptions = {
 				ttl: 0,
 				limit: 5
 			};
-			expect(() => new ThrottlerStrategy(options)).toThrowError(RangeError);
+			expect(() => new ThrottleStrategy(options)).toThrowError(RangeError);
 		});
 
 		it('should throw error if limit is less than or equal to 0', () => {
-			const options: ThrottlerOptions = {
+			const options: ThrottleOptions = {
 				ttl: 500,
 				limit: 0
 			};
-			expect(() => new ThrottlerStrategy(options)).toThrowError(RangeError);
+			expect(() => new ThrottleStrategy(options)).toThrowError(RangeError);
 		});
 	});
 
 	describe('process', () => {
-		let strategy: ThrottlerStrategy;
+		let strategy: ThrottleStrategy;
 
 		beforeEach(() => {
-			strategy = new ThrottlerStrategy({
+			strategy = new ThrottleStrategy({
 				ttl: 500,
 				limit: 2
 			});

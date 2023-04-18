@@ -1,7 +1,11 @@
 import {
+	BulkheadOptions,
+	BulkheadStrategy,
 	RetryOptions,
 	RetryStrategy,
 	Strategy,
+	ThrottleOptions,
+	ThrottleStrategy,
 	TimeoutOptions,
 	TimeoutStrategy
 } from './strategies';
@@ -30,8 +34,14 @@ export function ResilienceInterceptor<T>(
 	return Interceptor;
 }
 
-export const TimeoutInterceptor = (options: TimeoutOptions) =>
-	ResilienceInterceptor(TimeoutStrategy, options);
+export const BulkheadInterceptor = (options: BulkheadOptions) =>
+	ResilienceInterceptor(BulkheadStrategy, options);
 
 export const RetryInterceptor = (options: RetryOptions) =>
 	ResilienceInterceptor(RetryStrategy, options);
+
+export const ThrottleInterceptor = (options: ThrottleOptions) =>
+	ResilienceInterceptor(ThrottleStrategy, options);
+
+export const TimeoutInterceptor = (options: TimeoutOptions) =>
+	ResilienceInterceptor(TimeoutStrategy, options);

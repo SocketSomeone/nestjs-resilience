@@ -2,21 +2,21 @@ import { Strategy } from './base.strategy';
 import { Observable } from 'rxjs';
 import { ThrottlerException } from '../exceptions';
 
-export interface ThrottlerOptions {
+export interface ThrottleOptions {
 	ttl: number;
 	limit: number;
 }
 
-export class ThrottlerStrategy extends Strategy<ThrottlerOptions> {
-	private static readonly DEFAULT_OPTIONS: ThrottlerOptions = {
+export class ThrottleStrategy extends Strategy<ThrottleOptions> {
+	private static readonly DEFAULT_OPTIONS: ThrottleOptions = {
 		ttl: 1000,
 		limit: 10
 	};
 
 	private records: number[] = [];
 
-	public constructor(options?: ThrottlerOptions) {
-		super({ ...ThrottlerStrategy.DEFAULT_OPTIONS, ...options });
+	public constructor(options?: ThrottleOptions) {
+		super({ ...ThrottleStrategy.DEFAULT_OPTIONS, ...options });
 
 		if (this.options.ttl <= 0) {
 			throw new RangeError('TTL must be greater than 0, got: ' + this.options.ttl);

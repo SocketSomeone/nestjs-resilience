@@ -1,8 +1,12 @@
 import { Injectable, Logger, Type } from '@nestjs/common';
 import {
+	BulkheadOptions,
+	BulkheadStrategy,
 	RetryOptions,
 	RetryStrategy,
 	Strategy,
+	ThrottleOptions,
+	ThrottleStrategy,
 	TimeoutOptions,
 	TimeoutStrategy
 } from './strategies';
@@ -11,10 +15,16 @@ import {
 export class ResilienceFactory {
 	private readonly logger = new Logger(ResilienceFactory.name);
 
-	private readonly instances: Map<string, Strategy<any>> = new Map();
+	public createBulkheadStrategy(options: BulkheadOptions) {
+		return this.createStrategy(BulkheadStrategy, options);
+	}
 
 	public createRetryStrategy(options: RetryOptions) {
 		return this.createStrategy(RetryStrategy, options);
+	}
+
+	public createThrottleStrategy(options: ThrottleOptions) {
+		return this.createStrategy(ThrottleStrategy, options);
 	}
 
 	public createTimeoutStrategy(options: TimeoutOptions) {
@@ -23,9 +33,5 @@ export class ResilienceFactory {
 
 	public createStrategy<T>(strategy: Type<Strategy<T>>, options: T) {
 		return new strategy(options);
-	}
-
-	public getStorage<T>() {
-		return this.instances;
 	}
 }

@@ -1,21 +1,28 @@
-import { ResilienceFactory, RetryStrategy, TimeoutStrategy } from '../src';
+import {
+	BulkheadStrategy,
+	ResilienceFactory,
+	RetryStrategy,
+	Strategy,
+	ThrottleStrategy,
+	TimeoutStrategy
+} from '../src';
+import { Type } from '@nestjs/common';
 
 describe('Resilience Factory', () => {
 	const factory = new ResilienceFactory();
 
-	it('should be able to create a retry strategy', () => {
-		const retryStrategy = factory.createRetryStrategy({});
+	const expectStrategy = (clazz: Type<Strategy>) => {
+		return it(`should be able to create a ${clazz.name}`, () => {
+			const strategy = factory.createStrategy(clazz, {});
 
-		expect(retryStrategy).toBeDefined();
-		expect(retryStrategy).toHaveProperty('process');
-		expect(retryStrategy).toBeInstanceOf(RetryStrategy);
-	});
+			expect(strategy).toBeDefined();
+			expect(strategy).toHaveProperty('process');
+			expect(strategy).toBeInstanceOf(clazz);
+		});
+	};
 
-	it('should be able to create a timeout strategy', () => {
-		const timeoutStrategy = factory.createStrategy(TimeoutStrategy, { timeout: 1000 });
-
-		expect(timeoutStrategy).toBeDefined();
-		expect(timeoutStrategy).toHaveProperty('process');
-		expect(timeoutStrategy).toBeInstanceOf(TimeoutStrategy);
-	});
+	expectStrategy(BulkheadStrategy);
+	expectStrategy(RetryStrategy);
+	expectStrategy(ThrottleStrategy);
+	expectStrategy(TimeoutStrategy);
 });
