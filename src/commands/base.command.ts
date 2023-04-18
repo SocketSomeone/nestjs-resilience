@@ -1,5 +1,4 @@
-import { Inject, Logger } from '@nestjs/common';
-import { ResilienceFactory } from '../resilience.factory';
+import { Logger } from '@nestjs/common';
 import { EventEmitter } from 'events';
 import { Strategy } from '../strategies';
 
@@ -19,9 +18,6 @@ export abstract class BaseCommand extends EventEmitter {
 	protected fallback: this['run'];
 
 	protected healthCheck: () => boolean;
-
-	@Inject()
-	protected readonly factory: ResilienceFactory;
 
 	public constructor(group: string) {
 		super();
@@ -54,6 +50,10 @@ export abstract class BaseCommand extends EventEmitter {
 		return this;
 	}
 
+	/**
+	 * Abstract method to be implemented by the command
+	 * @param args
+	 */
 	public abstract run(...args: any[]): any;
 
 	public getFallbackOrThrow(args: ParametersOfRun<this>, err: any): ReturnTypeOfRun<this> {

@@ -1,77 +1,78 @@
-import { BulkheadRejectedException, BulkheadStrategy, sleep } from '../../src';
-import { of } from 'rxjs';
+import { BulkheadOptions, BulkheadRejectedException, BulkheadStrategy } from '../../src';
+import { of, take } from 'rxjs';
 
 describe('Bulkhead Strategy', () => {
-	let strategy: BulkheadStrategy;
-
-	const promise = () =>
-		Promise.all([
-			strategy.execute(async () => {
-				await sleep(200);
-				return 200;
-			}),
-			strategy.execute(async () => {
-				await sleep(200);
-				return 200;
-			}),
-			strategy.execute(async () => {
-				await sleep(200);
-				return 200;
-			}),
-			strategy.execute(async () => {
-				await sleep(200);
-				return 200;
-			})
-		]);
+	let bulkhead: BulkheadStrategy;
+	const options: BulkheadOptions = { maxConcurrent: 2, maxQueue: 2 };
 
 	beforeEach(() => {
-		strategy = new BulkheadStrategy({
-			maxConcurrent: 2,
-			maxQueue: 2
+		bulkhead = new BulkheadStrategy(options);
+	});
+
+	describe('constructor', () => {
+		it('should create an instance of BulkheadStrategy', () => {
+			expect(bulkhead).toBeInstanceOf(BulkheadStrategy);
+		});
+
+		it('should set the default options if none are provided', () => {
+			const defaultBulkhead = new BulkheadStrategy();
+			expect(defaultBulkhead['options']).toEqual({ maxConcurrent: 1, maxQueue: 1 });
+		});
+
+		it('should set the options passed in the constructor', () => {
+			expect(bulkhead['options']).toEqual(options);
 		});
 	});
 
-	it('should be able to execute a promise', async () => {
-		const value = await strategy.execute(async () => 1000);
+	describe('process', () => {
+		it('should allow an observable to execute if there is room in the concurrency slots', done => {
+			const observable = of('test').pipe(take(1));
 
-		expect(value).toBe(1000);
-	});
-
-	it('should be able to execute an observable', done => {
-		strategy.execute(of(1000)).subscribe(value => {
-			expect(value).toBe(1000);
-			done();
+			bulkhead.process(observable).subscribe(value => {
+				expect(value).toEqual('test');
+				done();
+			});
 		});
-	});
 
-	it('should be able to execute a promise with maxConcurrent', async () => {
-		const value = await promise();
+		it('should enqueue an observable if there is no room in the concurrency slots but there is room in the queue slots', done => {
+			const observable1 = of('test1').pipe(take(1));
+			const observable2 = of('test2').pipe(take(1));
+			const observable3 = of('test3').pipe(take(1));
 
-		expect(value).toEqual([200, 200, 200, 200]);
-	});
+			bulkhead.process(observable1).subscribe(value => {
+				expect(value).toEqual('test1');
 
-	it('should be able to handle error', async () => {
-		const value = await strategy
-			.execute(async () => {
-				throw new Error('Test');
-			})
-			.catch(err => err.message);
+				bulkhead.process(observable2).subscribe(value => {
+					expect(value).toEqual('test2');
 
-		expect(value).toEqual('Test');
-	});
+					bulkhead.process(observable3).subscribe(value => {
+						expect(value).toEqual('test3');
+						done();
+					});
 
-	it('should be able to handle bulk rejection', done => {
-		try {
-			Promise.all([
-				promise(),
-				strategy.execute(async () => {
-					await sleep(200);
-					return 200;
-				})
-			]);
-		} catch (err) {
-			expect(err).toBeInstanceOf(BulkheadRejectedException);
-			done();
-		}
+					expect(bulkhead['queue'].length).toEqual(1);
+				});
+
+				expect(bulkhead['queue'].length).toEqual(0);
+			});
+		});
+
+		it('should throw a BulkheadRejectedException if there is no room in the concurrency slots or the queue slots', () => {
+			const observable1 = of('test1').pipe(take(1));
+			const observable2 = of('test2').pipe(take(1));
+			const observable3 = of('test3').pipe(take(1));
+			const observable4 = of('test4').pipe(take(1));
+
+			bulkhead.process(observable1).subscribe();
+			bulkhead.process(observable2).subscribe();
+
+			expect(() => bulkhead.process(observable3)).not.toThrow();
+
+			bulkhead.process(observable4).subscribe({
+				error: err => {
+					expect(err).toBeInstanceOf(BulkheadRejectedException);
+				}
+			});
+		});
 	});
 });

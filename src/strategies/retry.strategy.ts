@@ -32,7 +32,7 @@ export class RetryStrategy extends Strategy<RetryOptions> {
 		super({ ...RetryStrategy.DEFAULT_OPTIONS, ...options });
 
 		if (this.options.scaleFactor <= 0) {
-			throw new Error(
+			throw new RangeError(
 				'Scale factor must be greater than 0, got: ' + this.options.scaleFactor
 			);
 		}

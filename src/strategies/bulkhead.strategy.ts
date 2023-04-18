@@ -8,6 +8,11 @@ export interface BulkheadOptions {
 }
 
 export class BulkheadStrategy extends Strategy<BulkheadOptions> {
+	private static readonly DEFAULT_OPTIONS: BulkheadOptions = {
+		maxConcurrent: 1,
+		maxQueue: 1
+	};
+
 	private active = 0;
 
 	private queue: Observable<any>[] = [];
@@ -20,6 +25,10 @@ export class BulkheadStrategy extends Strategy<BulkheadOptions> {
 
 	private get queueSlots(): number {
 		return this.options.maxQueue - this.queue.length;
+	}
+
+	public constructor(options?: BulkheadOptions) {
+		super({ ...BulkheadStrategy.DEFAULT_OPTIONS, ...options });
 	}
 
 	public process<T>(observable: Observable<T>): Observable<T> {

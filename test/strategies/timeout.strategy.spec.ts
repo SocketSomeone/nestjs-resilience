@@ -1,53 +1,37 @@
-import { TimeoutStrategy } from '../../src/strategies';
-import { delay, of } from 'rxjs';
-import { ResilienceTimeoutException } from '../../src/exceptions';
+import { timer } from 'rxjs';
+import { take } from 'rxjs/operators';
+import { TimeoutException, TimeoutStrategy } from '../../src';
 
-describe('Timeout Strategy', () => {
-	const strategy = new TimeoutStrategy({ timeout: 100 });
+describe('TimeoutStrategy', () => {
+	describe('constructor', () => {
+		it('should throw an error when timeout is less than or equal to 0', () => {
+			expect(() => new TimeoutStrategy({ timeout: 0 })).toThrow(RangeError);
+			expect(() => new TimeoutStrategy({ timeout: -1 })).toThrow(RangeError);
+		});
 
-	it('should be able to timeout a promise', done => {
-		strategy
-			.execute(() => new Promise(resolve => setTimeout(() => resolve(1000), 1000)))
-			.catch(error => {
-				expect(error).toBeInstanceOf(ResilienceTimeoutException);
-				done();
-			});
-	});
+		it('should set default options when no options are provided', () => {
+			const strategy = new TimeoutStrategy();
+			expect(strategy['options']).toEqual({ timeout: 1000 });
+		});
 
-	it('should be able to timeout an observable', done => {
-		strategy.execute(of(1000).pipe(delay(1000))).subscribe({
-			error: error => {
-				expect(error).toBeInstanceOf(ResilienceTimeoutException);
-				done();
-			}
+		it('should set provided options', () => {
+			const strategy = new TimeoutStrategy({ timeout: 2000 });
+			expect(strategy['options']).toEqual({ timeout: 2000 });
 		});
 	});
 
-	it('should be able return a value of observable', done => {
-		strategy.execute(of(1000).pipe(delay(100))).subscribe({
-			next: value => {
-				expect(value).toBe(1000);
-			},
-			complete: () => {
-				done();
-			}
+	describe('process', () => {
+		it('should return the observable if it completes before the timeout', async () => {
+			const strategy = new TimeoutStrategy({ timeout: 2000 });
+			const source$ = timer(1000).pipe(take(1));
+			const result$ = await strategy.process(source$).toPromise();
+			expect(result$).toEqual(0);
 		});
-	});
 
-	it('should be able return a value of promise', done => {
-		strategy
-			.execute(() => Promise.resolve(1000))
-			.then(value => {
-				expect(value).toBe(1000);
-				done();
-			});
-	});
-
-	it('should be able throw error if not time err', function () {
-		strategy
-			.execute(() => Promise.reject(new Error('Test')))
-			.catch(error => {
-				expect(error.message).toBe('Test');
-			});
+		it('should throw TimeoutException if the observable takes longer than the timeout', async () => {
+			const strategy = new TimeoutStrategy({ timeout: 1000 });
+			const source$ = timer(2000).pipe(take(1));
+			await expect(strategy.process(source$).toPromise()).rejects.toThrow(TimeoutException);
+		});
 	});
 });

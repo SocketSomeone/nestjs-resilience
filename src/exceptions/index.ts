@@ -1,3 +1,4 @@
 export * from './bulkhead-rejected.exception';
 export * from './resilience-runtime.exception';
-export * from './resilience-timeout.exception';
+export * from './timeout.exception';
+export * from './throttler.exception';
