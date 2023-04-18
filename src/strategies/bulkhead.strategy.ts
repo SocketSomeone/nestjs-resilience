@@ -1,5 +1,5 @@
 import { Strategy } from './base.strategy';
-import { catchError, finalize, Observable, Subject } from 'rxjs';
+import { finalize, Observable, Subject } from 'rxjs';
 import { BulkheadRejectedException } from '../exceptions';
 
 export interface BulkheadOptions {
@@ -41,11 +41,6 @@ export class BulkheadStrategy extends Strategy<BulkheadOptions> {
 			finalize(() => {
 				this.active--;
 				this.dequeue();
-			}),
-			catchError(error => {
-				this.active--;
-				this.dequeue();
-				throw error;
 			})
 		);
 	}
