@@ -1,6 +1,9 @@
 export class ResilienceRuntimeException extends Error {
-	constructor(message: string) {
+	constructor(message = ``) {
 		super(message);
-		this.name = 'ResilienceRuntimeException';
+	}
+
+	public what() {
+		return this.message;
 	}
 }
