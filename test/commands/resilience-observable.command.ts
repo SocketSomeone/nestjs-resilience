@@ -3,8 +3,6 @@ import { of, tap } from 'rxjs';
 import { retryStrategy } from './fixtures/strategy.fixture';
 
 class TestObservableCommand extends ResilienceObservableCommand {
-	protected strategies = [retryStrategy];
-
 	private count = 0;
 
 	public run() {
@@ -24,7 +22,7 @@ class TestObservableCommand extends ResilienceObservableCommand {
 
 describe('Resilience Observable Command', () => {
 	it('should be able to retry an observable', done => {
-		const command = new TestObservableCommand('test');
+		const command = new TestObservableCommand([retryStrategy]);
 		const observable = command.execute();
 
 		observable.subscribe({

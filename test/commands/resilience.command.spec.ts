@@ -19,7 +19,7 @@ class TestCommand extends ResilienceCommand {
 
 describe('Resilience Command', () => {
 	it('should be able to retry a promise', async () => {
-		const command = new TestCommand('test');
+		const command = new TestCommand([retryStrategy]);
 		const value = await command.execute();
 
 		expect(value).toBe(1000);

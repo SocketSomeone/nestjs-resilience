@@ -6,8 +6,6 @@ export function UseResilienceObservable(...strategies: Strategy[]) {
 		const originalMethod = descriptor.value;
 
 		class Command extends ResilienceObservableCommand {
-			public strategies: Strategy[] = strategies;
-
 			public group: string = target.constructor.name;
 
 			public name: string = propertyKey;
@@ -15,7 +13,7 @@ export function UseResilienceObservable(...strategies: Strategy[]) {
 			public run = null;
 		}
 
-		const command: ResilienceObservableCommand = new Command(target.constructor.name);
+		const command: ResilienceObservableCommand = new Command(strategies);
 
 		descriptor.value = function (...args: any[]) {
 			if (command.run === null) {

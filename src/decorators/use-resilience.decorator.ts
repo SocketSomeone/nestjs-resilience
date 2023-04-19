@@ -6,8 +6,6 @@ export function UseResilience(...strategies: Strategy[]) {
 		const originalMethod = descriptor.value;
 
 		class Command extends ResilienceCommand {
-			public strategies: Strategy[] = strategies;
-
 			public group: string = target.constructor.name;
 
 			public name: string = propertyKey;
@@ -15,7 +13,7 @@ export function UseResilience(...strategies: Strategy[]) {
 			public run = null;
 		}
 
-		const command: ResilienceCommand = new Command(target.constructor.name);
+		const command: ResilienceCommand = new Command(strategies);
 
 		descriptor.value = function (...args: any[]) {
 			if (command.run === null) {

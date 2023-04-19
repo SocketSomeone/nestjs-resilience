@@ -29,6 +29,10 @@ class GetUserByIdCommand extends ResilienceCommand {
 	@Inject()
 	private readonly usersService: UsersService;
 
+	public constructor() {
+		super([]);
+	}
+
 	public async run(id: string) {
 		return this.usersService.getUserById(id);
 	}
