@@ -1,6 +1,8 @@
 import {
 	BulkheadOptions,
 	BulkheadStrategy,
+	CacheOptions,
+	CacheStrategy,
 	FallbackOptions,
 	FallbackStrategy,
 	RetryOptions,
@@ -41,6 +43,9 @@ export const BulkheadInterceptor = (options: BulkheadOptions) =>
 
 export const FallbackInterceptor = (options: FallbackOptions) =>
 	ResilienceInterceptor(FallbackStrategy, options);
+
+export const CacheInterceptor = (options: CacheOptions) =>
+	ResilienceInterceptor(CacheStrategy, options);
 
 export const HealthCheckInterceptor = (options: BulkheadOptions) =>
 	ResilienceInterceptor(BulkheadStrategy, options);

@@ -1,7 +1,9 @@
-import { Injectable, Logger, Type } from '@nestjs/common';
+import { Injectable, Type } from '@nestjs/common';
 import {
 	BulkheadOptions,
 	BulkheadStrategy,
+	CacheOptions,
+	CacheStrategy,
 	FallbackOptions,
 	FallbackStrategy,
 	HealthCheckOptions,
@@ -17,14 +19,16 @@ import {
 
 @Injectable()
 export class ResilienceFactory {
-	private readonly logger = new Logger(ResilienceFactory.name);
-
 	public createBulkheadStrategy(options: BulkheadOptions) {
 		return this.createStrategy(BulkheadStrategy, options);
 	}
 
 	public createFallbackStrategy(options: FallbackOptions) {
 		return this.createStrategy(FallbackStrategy, options);
+	}
+
+	public createCacheStrategy(options: CacheOptions) {
+		return this.createStrategy(CacheStrategy, options);
 	}
 
 	public createHealthCheckStrategy(options: HealthCheckOptions) {
