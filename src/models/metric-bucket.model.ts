@@ -52,4 +52,25 @@ export class MetricBucket {
 	public get shortCircuitRate(): number {
 		return this.total ? this.shortCircuit / this.total : 0;
 	}
+
+	public toJSON() {
+		return {
+			success: this.success,
+			failure: this.failure,
+			timeout: this.timeout,
+			shortCircuit: this.shortCircuit,
+			total: this.total,
+			successRate: this.successRate,
+			failureRate: this.failureRate,
+			failurePercentage: this.failurePercentage,
+			timeoutRate: this.timeoutRate,
+			shortCircuitRate: this.shortCircuitRate
+		};
+	}
+
+	public toString() {
+		return Object.entries(this.toJSON())
+			.map(([key, value]) => `${key}: ${value}`)
+			.join(', ');
+	}
 }
