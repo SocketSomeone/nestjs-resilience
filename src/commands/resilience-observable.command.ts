@@ -1,5 +1,6 @@
 import { BaseCommand, ReturnTypeOfRun } from './base.command';
-import { Observable } from 'rxjs';
+import { catchError, Observable, tap } from 'rxjs';
+import { ResilienceEventType } from '../enum';
 
 export abstract class ResilienceObservableCommand extends BaseCommand {
 	public abstract run(...args: any[]): Observable<any>;
@@ -11,12 +12,13 @@ export abstract class ResilienceObservableCommand extends BaseCommand {
 			observable = strategy.process(observable);
 		}
 
-		return observable as ReturnTypeOfRun<this>;
-	}
+		this.eventBus.emit(ResilienceEventType.Emit, this);
 
-	public getExecutionObservable(
-		...args: Parameters<this['run']>
-	): Observable<ReturnTypeOfRun<this>> {
-		return this.execute(...args);
+		return observable.pipe(
+			catchError(error => {
+				throw this.onFailure(error);
+			}),
+			tap(() => this.onSuccess())
+		) as ReturnTypeOfRun<this>;
 	}
 }

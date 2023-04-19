@@ -50,4 +50,8 @@ export class ResilienceFactory {
 	public createStrategy<T>(strategy: Type<Strategy<T>>, options: T) {
 		return new strategy(options);
 	}
+
+	public createCommand<T>(command: Type<T>, strategies: Strategy[]) {
+		return new command(strategies);
+	}
 }
