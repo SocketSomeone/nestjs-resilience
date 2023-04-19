@@ -34,21 +34,24 @@ export abstract class BaseCommand {
 	public abstract execute(...args: ParametersOfRun<this>): ReturnTypeOfRun<this>;
 
 	public onSuccess() {
+		this.logger.debug('Command executed successfully');
 		this.eventBus.emit(ResilienceEventType.Success, this);
-		console.log('onSuccess');
 	}
 
 	protected onFailure(error: any) {
 		if (error instanceof TimeoutException) {
+			this.logger.debug('Command timed out');
 			this.eventBus.emit(ResilienceEventType.Timeout, this);
 			return error;
 		}
 
 		if (error instanceof CircuitOpenedException) {
+			this.logger.debug('Command short-circuited');
 			this.eventBus.emit(ResilienceEventType.ShortCircuit, this);
 			return error;
 		}
 
+		this.logger.debug('Command failed');
 		this.eventBus.emit(ResilienceEventType.Failure, this);
 		return error;
 	}
