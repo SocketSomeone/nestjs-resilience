@@ -13,4 +13,10 @@ export abstract class ResilienceObservableCommand extends BaseCommand {
 
 		return observable as ReturnTypeOfRun<this>;
 	}
+
+	public getExecutionObservable(
+		...args: Parameters<this['run']>
+	): Observable<ReturnTypeOfRun<this>> {
+		return this.execute(...args);
+	}
 }

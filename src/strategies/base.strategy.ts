@@ -4,7 +4,7 @@ import { Logger } from '@nestjs/common';
 
 type ObservableFactory<T> = () => Promise<T> | Observable<T>;
 
-export abstract class Strategy<Options = Record<string, any>> extends EventEmitter {
+export abstract class Strategy<Options = any> extends EventEmitter {
 	protected readonly logger = new Logger(this.constructor.name);
 
 	protected constructor(protected options: Options) {
