@@ -1,5 +1,5 @@
 import { Strategy } from './base.strategy';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { ThrottlerException } from '../exceptions';
 
 export interface ThrottleOptions {
@@ -34,7 +34,7 @@ export class ThrottleStrategy extends Strategy<ThrottleOptions> {
 		this.records = this.records.filter(record => record > expired);
 
 		if (this.isLimitReached) {
-			throw new ThrottlerException();
+			return throwError(() => new ThrottlerException());
 		}
 
 		this.records.push(now);

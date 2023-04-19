@@ -22,7 +22,7 @@ export function UseResilienceObservable(...strategies: Strategy[]) {
 				command.run = originalMethod.bind(this);
 			}
 
-			return command.toObservable(...args);
+			return command.execute(...args);
 		};
 
 		return descriptor;

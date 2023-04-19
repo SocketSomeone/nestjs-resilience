@@ -54,11 +54,12 @@ describe('ThrottlerStrategy', () => {
 		});
 
 		it('should throw error if limit is reached', () => {
-			strategy.process(new Observable<number>());
-			strategy.process(new Observable<number>());
-			expect(() => strategy.process(new Observable<number>())).toThrowError(
-				ThrottlerException
-			);
+			const observable = new Observable<number>();
+			strategy.process(observable);
+			strategy.process(observable);
+			strategy.process(observable).subscribe({
+				error: error => expect(error).toBeInstanceOf(ThrottlerException)
+			});
 		});
 	});
 });

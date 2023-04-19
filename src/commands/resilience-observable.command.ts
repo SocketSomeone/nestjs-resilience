@@ -4,7 +4,7 @@ import { catchError, Observable } from 'rxjs';
 export abstract class ResilienceObservableCommand extends BaseCommand {
 	public abstract run(...args: any[]): Observable<any>;
 
-	public toObservable(...args: Parameters<this['run']>): ReturnTypeOfRun<this> {
+	public execute(...args: Parameters<this['run']>): ReturnTypeOfRun<this> {
 		if (!this.getHealthCheck()) {
 			return this.getFallbackOrThrow(args, new Error('Health check failed'));
 		}

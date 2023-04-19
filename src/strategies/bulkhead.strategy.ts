@@ -1,5 +1,5 @@
 import { Strategy } from './base.strategy';
-import { finalize, Observable, Subject } from 'rxjs';
+import { finalize, Observable, Subject, throwError } from 'rxjs';
 import { BulkheadRejectedException } from '../exceptions';
 
 export interface BulkheadOptions {
@@ -40,7 +40,9 @@ export class BulkheadStrategy extends Strategy<BulkheadOptions> {
 			return this.enqueue(observable);
 		}
 
-		throw new BulkheadRejectedException(this.options.maxConcurrent, this.options.maxQueue);
+		return throwError(
+			() => new BulkheadRejectedException(this.options.maxConcurrent, this.options.maxQueue)
+		);
 	}
 
 	private concurrent<T>(observable: Observable<T>): Observable<T> {

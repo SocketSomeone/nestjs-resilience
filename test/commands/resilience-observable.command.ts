@@ -25,7 +25,7 @@ class TestObservableCommand extends ResilienceObservableCommand {
 describe('Resilience Observable Command', () => {
 	it('should be able to retry an observable', done => {
 		const command = new TestObservableCommand('test');
-		const observable = command.toObservable();
+		const observable = command.execute();
 
 		observable.subscribe({
 			next: value => {

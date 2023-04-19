@@ -56,6 +56,8 @@ export abstract class BaseCommand extends EventEmitter {
 	 */
 	public abstract run(...args: any[]): any;
 
+	public abstract execute(...args: ParametersOfRun<this>): ReturnTypeOfRun<this>;
+
 	public getFallbackOrThrow(args: ParametersOfRun<this>, err: any): ReturnTypeOfRun<this> {
 		if (!this.fallback) {
 			throw err;
