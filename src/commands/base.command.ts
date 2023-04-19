@@ -11,18 +11,19 @@ export abstract class BaseCommand extends EventEmitter {
 
 	protected strategies: Strategy[] = [];
 
-	protected group: string = this.constructor.name;
+	protected group: string;
 
-	protected name: string = this.constructor.name;
+	protected name: string;
 
 	protected fallback: this['run'];
 
 	protected healthCheck: () => boolean;
 
-	public constructor(group: string) {
+	public constructor(strategies: Strategy[], group?: string, name?: string) {
 		super();
 
-		this.group = group;
+		this.group = group ?? 'default';
+		this.name = name ?? this.constructor.name;
 	}
 
 	public setStrategies(strategies: Strategy[]): this {
