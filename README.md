@@ -93,9 +93,10 @@ export class GetUserByIdCommand extends ResilienceCommand {
 This way supports DI, just what you need add `@Injectable()` decorator to your command and to providers of your module. Inject your
 command in the constructor or use `resilienceService.getCommand(GetUserByIdCommand)`.
 
-> - Can I use `@Inject()` decorator? Yes, you can. But you need to add `@Injectable()` decorator to your command.
->
-> - Can I use w/o DI? Yes, you can. Just create a command with `new` operator.
+FAQ:
+
+- Can I use `@Inject()` decorator? Yes, you can. But you need to add `@Injectable()` decorator to your command.
+- Can I use w/o DI? Yes, you can. Just create a command with `new` operator.
 
 #### 2. Use the `@UseResilience()` decorator
 
