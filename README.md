@@ -190,7 +190,7 @@ What it means? Let's take a look at the example:
 | `HealthCheckStrategy`    | Check the health of a service                                        |
 | `CacheStrategy`          | Cache the result of a service call                                   |
 
-#### Metrics
+### Metrics
 
 We collect metrics for each command. You can use it to monitor the health of your services.
     
