@@ -51,6 +51,7 @@ import { ResilienceModule } from 'nestjs-resilience';
 @Module({
     imports: [ResilienceModule]
 })
+export class AppModule {}
 ```
 
 ### Ways to use
