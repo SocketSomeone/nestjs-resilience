@@ -99,6 +99,8 @@ command in the constructor or use `resilienceService.getCommand(GetUserByIdComma
 
 #### 2. Use the `@UseResilience()` decorator
 
+You can use `@UseResilience()` decorator to wrap your **service** methods.
+
 ```typescript
 import { Injectable } from '@nestjs/common';
 import { TimeoutStrategy } from "./timeout.strategy";
@@ -112,6 +114,8 @@ export class UsersService {
     }
 }
 ```
+
+> Not the best way to use in controller methods. `@UseResilience` rewrite your method. 
 
 #### 3. Interceptors
 
