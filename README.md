@@ -42,7 +42,169 @@ $ pnpm add nestjs-resilience
 
 ## Usage
 
-TODO...
+### Import the module
+
+```typescript
+import { Module } from '@nestjs/common';
+import { ResilienceModule } from 'nestjs-resilience';
+
+@Module({
+    imports: [ResilienceModule]
+})
+```
+
+### Ways to use
+
+You can use it in three ways:
+
+#### 1. Use `ResilienceCommand`
+
+You can create a command by extending the `ResilienceCommand` class. You can also use the `ResilienceFactory` to create a command with a set
+of policies.
+
+```typescript
+import { Injectable } from '@nestjs/common';
+import { ResilienceCommand, ResilienceFactory } from 'nestjs-resilience';
+import { UsersService } from './user.service';
+import { User, NullUserObject } from './user.entity';
+
+@Injectable()
+export class GetUserByIdCommand extends ResilienceCommand {
+    constructor(
+        private readonly factory: ResilienceFactory,
+        private readonly userService: UsersService
+    ) {
+        super([
+            // You can use the injected factory to create a strategy
+            factory.createTimeout(1000),
+            // Or you can create a strategy directly
+            ResilienceFactory.createFallback((id) => new NullUserObject(id))
+            // You can also use mannually created strategies
+            // new TimeoutStrategy(1000),
+        ]);
+    }
+
+    async execute(id: number): User {
+        return this.usersService.getUser(id);
+    }
+}
+```
+
+This way supports DI, just what you need add `@Injectable()` decorator to your command and to providers of your module. Inject your
+command in the constructor or use `resilienceService.getCommand(GetUserByIdCommand)`.
+
+> - Can I use `@Inject()` decorator? Yes, you can. But you need to add `@Injectable()` decorator to your command.
+>
+> - Can I use w/o DI? Yes, you can. Just create a command with `new` operator.
+
+#### 2. Use the `@UseResilience()` decorator
+
+```typescript
+import { Injectable } from '@nestjs/common';
+import { TimeoutStrategy } from "./timeout.strategy";
+import { NullUserObject, User } from './user.entity';
+
+@Injectable()
+export class UsersService {
+    @UseResilience(new TimeoutStrategy(1000), ResilienceFactory.createFallback((id) => new NullUserObject(id)))
+    async getUser(id: number): User {
+        return this.httpService.get(`https://example.com/users/${id}`).toPromise();
+    }
+}
+```
+
+#### 3. Interceptors
+
+You also can wrap your controller methods with `ResilienceInterceptor` and use all the features of the library.
+
+```typescript
+import { Controller, Get, UseInterceptors } from '@nestjs/common';
+import { ResilienceInterceptor } from 'nestjs-resilience';
+import { UsersService } from './users.service';
+
+@Controller('users')
+export class UsersController {
+    constructor(private readonly usersService: UsersService) {
+    }
+
+    @Get()
+    @UseInterceptors(ResilienceInterceptor(new TimeoutStrategy(1000), ResilienceFactory.createFallback(() => [])))
+    async getUsers(): User[] {
+        return this.usersService.getUsers();
+    }
+}
+```
+
+#### Observables
+
+We also support `Observable` as a return type. You can use it with `@UseResilienceObservable()` decorator or `ResilienceCommandObservable`.
+
+```typescript
+import { Injectable } from '@nestjs/common';
+import { TimeoutStrategy } from "./timeout.strategy";
+import { NullUserObject, User } from './user.entity';
+import { Observable, of } from 'rxjs';
+
+@Injectable()
+export class UsersService {
+    @UseResilienceObservable(new TimeoutStrategy(1000), ResilienceFactory.createFallback((id) => new NullUserObject(id)))
+    getUser(id: number): Observable<User> {
+        return of(new User(id, 'John Doe'));
+    }
+}
+```
+
+#### Order of execution
+
+Strategies processing in order which you pass them to the `ResilienceCommand` or `ResilienceInterceptor`.
+
+What it means? Let's take a look at the example:
+
+**Timeout before Retry:**
+
+- If the command is executed successfully, the result will be returned.
+- If the command is executed with an error or timed out, the command will be retried.
+- If the command is executed with an error or timed out and the number of retries is exceeded, the error will be thrown.
+
+**Retry after Timeout:**
+
+- If the command is executed successfully, the result will be returned.
+- If the command is executed with an error, the command will be retried.
+- If the command is executed with an error and the number of retries is exceeded, the error will be thrown.
+- If the command is executed with an error and the number of retries is exceeded or timed out, the error will be thrown.
+
+### Strategies
+
+| Strategy                 | Description                                                          |
+|--------------------------|----------------------------------------------------------------------|
+| `TimeoutStrategy`        | Automatically fail fast when a service is taking too long to respond |
+| `RetryStrategy`          | Automatically retry failed requests                                  |
+| `CircuitBreakerStrategy` | Automatically fail fast when a service is unavailable                |
+| `BulkheadStrategy`       | Limit the number of concurrent requests to a service                 |
+| `FallbackStrategy`       | Provide a fallback response when a service is unavailable            |
+| `ThrottleStrategy`       | Limit the number of requests to a service                            |
+| `HealthCheckStrategy`    | Check the health of a service                                        |
+| `CacheStrategy`          | Cache the result of a service call                                   |
+
+#### Metrics
+
+We collect metrics for each command. You can use it to monitor the health of your services.
+    
+```typescript
+import { Injectable } from '@nestjs/common';
+import { ResilienceMetrics } from 'nestjs-resilience';
+
+@Injectable()
+export class MetricsService {
+    constructor(private readonly metrics: ResilienceMetrics) {
+    }
+
+    getMetrics(): any {
+        return this.metrics.getMetrics();
+    }
+}
+```
+
 
 ## Stay in touch
 

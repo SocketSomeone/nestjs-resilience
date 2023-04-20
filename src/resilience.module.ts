@@ -12,6 +12,6 @@ const eventBusProvider = {
 @Global()
 @Module({
 	providers: [eventBusProvider, ResilienceFactory, ResilienceService, ResilienceMetrics],
-	exports: [eventBusProvider, ResilienceService, ResilienceMetrics]
+	exports: [eventBusProvider, ResilienceFactory, ResilienceService, ResilienceMetrics]
 })
 export class ResilienceModule {}

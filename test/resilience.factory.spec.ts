@@ -9,7 +9,7 @@ import {
 import { Type } from '@nestjs/common';
 
 describe('Resilience Factory', () => {
-	const factory = new ResilienceFactory();
+	const factory = ResilienceFactory;
 
 	const expectStrategy = (clazz: Type<Strategy>) => {
 		return it(`should be able to create a ${clazz.name}`, () => {
