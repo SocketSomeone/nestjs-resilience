@@ -1,15 +1,7 @@
 import { Strategy } from './base.strategy';
 import { Backoff, FixedBackoff } from '../helpers';
-import { Type } from '@nestjs/common';
 import { Observable, retry, timer } from 'rxjs';
-
-export interface RetryOptions {
-	maxRetries?: number;
-	maxDelay?: number;
-	backoff?: Backoff | Type<Backoff>;
-	scaleFactor?: number;
-	retryable?: (error: Error) => boolean;
-}
+import { RetryOptions } from '../interfaces';
 
 export class RetryStrategy extends Strategy<RetryOptions> {
 	private static readonly DEFAULT_OPTIONS: RetryOptions = {

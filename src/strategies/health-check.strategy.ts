@@ -1,8 +1,7 @@
 import { Strategy } from './base.strategy';
 import { Observable, throwError } from 'rxjs';
 import { HealthCheckFailedException } from '../exceptions';
-
-export type HealthCheckOptions = () => boolean;
+import { HealthCheckOptions } from '../interfaces';
 
 export class HealthCheckStrategy extends Strategy<HealthCheckOptions> {
 	public constructor(options: HealthCheckOptions) {

@@ -1,21 +1,25 @@
 import {
-	BulkheadOptions,
 	BulkheadStrategy,
-	CacheOptions,
 	CacheStrategy,
-	FallbackOptions,
+	CircuitBreakerStrategy,
 	FallbackStrategy,
-	RetryOptions,
 	RetryStrategy,
 	Strategy,
-	ThrottleOptions,
 	ThrottleStrategy,
-	TimeoutOptions,
 	TimeoutStrategy
 } from './strategies';
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor, Type } from '@nestjs/common';
 import { ResilienceFactory } from './resilience.factory';
 import { Observable } from 'rxjs';
+import {
+	BulkheadOptions,
+	CacheOptions,
+	CircuitBreakerOptions,
+	FallbackOptions,
+	RetryOptions,
+	ThrottleOptions,
+	TimeoutOptions
+} from './interfaces';
 
 export function ResilienceInterceptor<T>(
 	strategy: Type<Strategy<T>>,
@@ -31,7 +35,7 @@ export function ResilienceInterceptor<T>(
 			context: ExecutionContext,
 			next: CallHandler<any>
 		): Observable<any> | Promise<Observable<any>> {
-			return this.strategy.process(next.handle());
+			return this.strategy.process(next.handle(), null);
 		}
 	}
 
@@ -41,11 +45,14 @@ export function ResilienceInterceptor<T>(
 export const BulkheadInterceptor = (options: BulkheadOptions) =>
 	ResilienceInterceptor(BulkheadStrategy, options);
 
-export const FallbackInterceptor = (options: FallbackOptions) =>
-	ResilienceInterceptor(FallbackStrategy, options);
-
 export const CacheInterceptor = (options: CacheOptions) =>
 	ResilienceInterceptor(CacheStrategy, options);
+
+export const CircuitBreakerInterceptor = (options: CircuitBreakerOptions) =>
+	ResilienceInterceptor(CircuitBreakerStrategy, options);
+
+export const FallbackInterceptor = (options: FallbackOptions) =>
+	ResilienceInterceptor(FallbackStrategy, options);
 
 export const HealthCheckInterceptor = (options: BulkheadOptions) =>
 	ResilienceInterceptor(BulkheadStrategy, options);

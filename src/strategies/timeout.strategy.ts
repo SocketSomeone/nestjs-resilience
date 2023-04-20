@@ -1,29 +1,24 @@
 import { Strategy } from './base.strategy';
 import { Observable, throwError, timeout } from 'rxjs';
 import { TimeoutException } from '../exceptions';
-
-export interface TimeoutOptions {
-	timeout?: number;
-}
+import { TimeoutOptions } from '../interfaces';
 
 export class TimeoutStrategy extends Strategy<TimeoutOptions> {
-	private static readonly DEFAULT_OPTIONS: TimeoutOptions = {
-		timeout: 1000
-	};
+	private static readonly DEFAULT_OPTIONS: TimeoutOptions = 1000;
 
-	public constructor(options?: TimeoutOptions) {
-		super({ ...TimeoutStrategy.DEFAULT_OPTIONS, ...options });
+	public constructor(options: TimeoutOptions = TimeoutStrategy.DEFAULT_OPTIONS) {
+		super(options);
 
-		if (this.options.timeout <= 0) {
-			throw new RangeError('Timeout must be greater than 0, got: ' + this.options.timeout);
+		if (this.options <= 0) {
+			throw new RangeError('Timeout must be greater than 0, got: ' + this.options);
 		}
 	}
 
 	public process<T>(observable: Observable<T>): Observable<T> {
 		return observable.pipe(
 			timeout({
-				each: this.options.timeout,
-				with: () => throwError(() => new TimeoutException(this.options.timeout))
+				each: this.options,
+				with: () => throwError(() => new TimeoutException(this.options))
 			})
 		);
 	}

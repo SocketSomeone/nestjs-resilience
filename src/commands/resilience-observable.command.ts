@@ -6,13 +6,13 @@ export abstract class ResilienceObservableCommand extends BaseCommand {
 	public abstract run(...args: any[]): Observable<any>;
 
 	public execute(...args: Parameters<this['run']>): ReturnTypeOfRun<this> {
+		this.eventBus.emit(ResilienceEventType.Emit, this);
+
 		let observable = this.run(...args);
 
 		for (const strategy of this.strategies) {
-			observable = strategy.process(observable);
+			observable = strategy.process(observable, ...args);
 		}
-
-		this.eventBus.emit(ResilienceEventType.Emit, this);
 
 		return observable.pipe(
 			catchError(error => {

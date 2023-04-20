@@ -1,14 +1,13 @@
 import { Strategy } from './base.strategy';
 import { catchError, Observable, of } from 'rxjs';
-
-export type FallbackOptions = () => any;
+import { FallbackOptions } from '../interfaces';
 
 export class FallbackStrategy extends Strategy<FallbackOptions> {
 	public constructor(options: FallbackOptions) {
 		super(options);
 	}
 
-	public process<T>(observable: Observable<T>): Observable<T> {
-		return observable.pipe(catchError(() => of(this.options())));
+	public process<T>(observable, ...args): Observable<T> {
+		return observable.pipe(catchError(() => of(this.options(...args))));
 	}
 }

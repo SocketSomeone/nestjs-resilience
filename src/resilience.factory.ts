@@ -1,21 +1,25 @@
 import { Injectable, Type } from '@nestjs/common';
 import {
-	BulkheadOptions,
 	BulkheadStrategy,
-	CacheOptions,
 	CacheStrategy,
-	FallbackOptions,
+	CircuitBreakerStrategy,
 	FallbackStrategy,
-	HealthCheckOptions,
 	HealthCheckStrategy,
-	RetryOptions,
 	RetryStrategy,
 	Strategy,
-	ThrottleOptions,
 	ThrottleStrategy,
-	TimeoutOptions,
 	TimeoutStrategy
 } from './strategies';
+import {
+	BulkheadOptions,
+	CacheOptions,
+	CircuitBreakerOptions,
+	FallbackOptions,
+	HealthCheckOptions,
+	RetryOptions,
+	ThrottleOptions,
+	TimeoutOptions
+} from './interfaces';
 
 @Injectable()
 export class ResilienceFactory {
@@ -23,12 +27,16 @@ export class ResilienceFactory {
 		return this.createStrategy(BulkheadStrategy, options);
 	}
 
-	public createFallbackStrategy(options: FallbackOptions) {
-		return this.createStrategy(FallbackStrategy, options);
-	}
-
 	public createCacheStrategy(options: CacheOptions) {
 		return this.createStrategy(CacheStrategy, options);
+	}
+
+	public createCircuitBreakerStrategy(options: CircuitBreakerOptions) {
+		return this.createStrategy(CircuitBreakerStrategy, options);
+	}
+
+	public createFallbackStrategy(options: FallbackOptions) {
+		return this.createStrategy(FallbackStrategy, options);
 	}
 
 	public createHealthCheckStrategy(options: HealthCheckOptions) {

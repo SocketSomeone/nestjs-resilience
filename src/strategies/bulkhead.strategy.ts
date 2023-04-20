@@ -1,11 +1,7 @@
 import { Strategy } from './base.strategy';
 import { finalize, Observable, Subject, throwError } from 'rxjs';
 import { BulkheadRejectedException } from '../exceptions';
-
-export interface BulkheadOptions {
-	maxConcurrent: number;
-	maxQueue: number;
-}
+import { BulkheadOptions } from '../interfaces';
 
 export class BulkheadStrategy extends Strategy<BulkheadOptions> {
 	private static readonly DEFAULT_OPTIONS: BulkheadOptions = {

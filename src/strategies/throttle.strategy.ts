@@ -1,11 +1,7 @@
 import { Strategy } from './base.strategy';
 import { Observable, throwError } from 'rxjs';
 import { ThrottlerException } from '../exceptions';
-
-export interface ThrottleOptions {
-	ttl: number;
-	limit: number;
-}
+import { ThrottleOptions } from '../interfaces';
 
 export class ThrottleStrategy extends Strategy<ThrottleOptions> {
 	private static readonly DEFAULT_OPTIONS: ThrottleOptions = {

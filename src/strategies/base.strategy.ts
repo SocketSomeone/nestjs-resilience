@@ -31,5 +31,5 @@ export abstract class Strategy<Options = any> extends EventEmitter {
 		return new (this.constructor as any)(this.options);
 	}
 
-	public abstract process<T>(observable: Observable<T>): Observable<T>;
+	public abstract process<T>(observable: Observable<T>, ...args): Observable<T>;
 }

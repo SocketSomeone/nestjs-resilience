@@ -1,6 +1,7 @@
 export * from './base.strategy';
 export * from './bulkhead.strategy';
 export * from './cache.strategy';
+export * from './circuit-breaker.strategy';
 export * from './fallback.strategy';
 export * from './health-check.strategy';
 export * from './throttle.strategy';

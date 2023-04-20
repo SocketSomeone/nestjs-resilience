@@ -1,6 +1,6 @@
 import { FixedBackoff, RetryStrategy, TimeoutStrategy, UseResilience } from '../../src';
 
-const timeoutStrategy = new TimeoutStrategy({ timeout: 100 });
+const timeoutStrategy = new TimeoutStrategy(100);
 const retryStrategy = new RetryStrategy({
 	maxRetries: 3,
 	backoff: FixedBackoff
