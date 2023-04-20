@@ -84,7 +84,7 @@ export class GetUserByIdCommand extends ResilienceCommand {
         ]);
     }
 
-    async execute(id: number): User {
+    async run(id: number): User {
         return this.usersService.getUser(id);
     }
 }
