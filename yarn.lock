@@ -838,12 +838,12 @@
     path-to-regexp "3.2.0"
     tslib "2.5.2"
 
-"@nestjs/testing@9.4.1":
-  version "9.4.1"
-  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-9.4.1.tgz#46e914cbe2074c929ae45de50b4d78c520f34ada"
-  integrity sha512-DErwymDxsY80dH2v3eZDVOhjDv6oY6YsaI3GnUEU+gUrYa8qxxKPHfOofAsFF7SExfeJo5c8RQRfazW3bQupJA==
+"@nestjs/testing@9.4.2":
+  version "9.4.2"
+  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-9.4.2.tgz#d6533195f5a50c84cf7e1df5a241585d1f360e44"
+  integrity sha512-4WZPJz85zLVZkhmWYq+Unr43MixISelg/TyuX1YFZYOeukIN+O6fRtAAPIKLqRQsiY0rE/h8FAEbYGWhNrRfSA==
   dependencies:
-    tslib "2.5.0"
+    tslib "2.5.2"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
