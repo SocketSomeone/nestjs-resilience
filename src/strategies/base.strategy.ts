@@ -1,14 +1,11 @@
 import { Observable } from 'rxjs';
-import * as EventEmitter from 'events';
 import { Logger } from '@nestjs/common';
 import { BaseCommand } from '../commands';
 
-export abstract class Strategy<Options = any> extends EventEmitter {
+export abstract class Strategy<Options = any> {
 	protected readonly logger = new Logger(this.constructor.name);
 
-	protected constructor(protected options: Options) {
-		super();
-	}
+	protected constructor(protected options: Options) {}
 
 	public setOptions(options: Options): void {
 		this.options = options;
