@@ -1,6 +1,7 @@
 import { Strategy } from './base.strategy';
 import { Observable, of, tap } from 'rxjs';
 import { CacheOptions } from '../interfaces';
+import { BaseCommand } from '../commands';
 
 interface CacheItem {
 	value: any;
@@ -16,7 +17,7 @@ export class CacheStrategy extends Strategy<CacheOptions> {
 		super(options);
 	}
 
-	public process(observable: Observable<any>, ...args): Observable<any> {
+	public process(observable: Observable<any>, command: BaseCommand, ...args): Observable<any> {
 		const key = JSON.stringify(args);
 
 		if (this.cache.has(key)) {

@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
 import * as EventEmitter from 'events';
 import { Logger } from '@nestjs/common';
+import { BaseCommand } from '../commands';
 
 type ObservableFactory<T> = () => Promise<T> | Observable<T>;
 
@@ -31,5 +32,9 @@ export abstract class Strategy<Options = any> extends EventEmitter {
 		return new (this.constructor as any)(this.options);
 	}
 
-	public abstract process<T>(observable: Observable<T>, ...args): Observable<T>;
+	public abstract process<T>(
+		observable: Observable<T>,
+		command: BaseCommand,
+		...args
+	): Observable<T>;
 }

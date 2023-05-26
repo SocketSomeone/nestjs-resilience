@@ -22,7 +22,7 @@ export abstract class BaseCommand {
 		this.strategies = strategies;
 		this.group = group ?? 'default';
 		this.name = name ?? this.constructor.name;
-		this.logger = new Logger(`${this.group}#${this.name}`);
+		this.logger = new Logger(this.toString());
 	}
 
 	/**
@@ -33,7 +33,7 @@ export abstract class BaseCommand {
 
 	public abstract execute(...args: ParametersOfRun<this>): ReturnTypeOfRun<this>;
 
-	public onSuccess() {
+	protected onSuccess() {
 		this.logger.debug('Command executed successfully');
 		this.eventBus.emit(ResilienceEventType.Success, this);
 	}
@@ -54,5 +54,9 @@ export abstract class BaseCommand {
 		this.logger.debug('Command failed');
 		this.eventBus.emit(ResilienceEventType.Failure, this);
 		return error;
+	}
+
+	public toString() {
+		return `${this.group}#${this.name}`;
 	}
 }

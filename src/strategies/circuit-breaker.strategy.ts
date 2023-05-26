@@ -5,6 +5,7 @@ import { catchError, Observable, of, tap, throwError } from 'rxjs';
 import { CircuitOpenedException } from '../exceptions';
 import { TimeoutStrategy } from './timeout.strategy';
 import { CacheStrategy } from './cache.strategy';
+import { BaseCommand } from '../commands';
 
 export class CircuitBreakerStrategy extends Strategy<CircuitBreakerOptions> {
 	private static readonly DEFAULT_OPTIONS: CircuitBreakerOptions = {
@@ -27,7 +28,7 @@ export class CircuitBreakerStrategy extends Strategy<CircuitBreakerOptions> {
 		super({ ...CircuitBreakerStrategy.DEFAULT_OPTIONS, ...options });
 	}
 
-	public process<T>(observable: Observable<T>, ...args): Observable<T> {
+	public process<T>(observable: Observable<T>, command: BaseCommand, ...args): Observable<T> {
 		if (this.isOpen) {
 			if (this.openedAt + this.options.sleepWindowInMilliseconds > Date.now()) {
 				return this.getFallbackOrThrowError(new CircuitOpenedException());
@@ -37,7 +38,7 @@ export class CircuitBreakerStrategy extends Strategy<CircuitBreakerOptions> {
 		}
 
 		if (this.options.cachedTimeoutInMilliseconds) {
-			observable = this.cacheStrategy.process(observable, ...args);
+			observable = this.cacheStrategy.process(observable, command, ...args);
 		}
 
 		if (this.options.timeoutInMilliseconds) {

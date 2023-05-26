@@ -16,7 +16,8 @@ describe('FallbackStrategy', () => {
 				map(() => {
 					throw new Error('error');
 				})
-			)
+			),
+			null
 		);
 
 		// Assert

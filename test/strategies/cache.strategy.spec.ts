@@ -16,7 +16,7 @@ describe('CacheStrategy', () => {
 			ttl: Date.now() - 1000
 		};
 
-		const observable = strategy.process(of('new value').pipe(delay(100)), 'test');
+		const observable = strategy.process(of('new value').pipe(delay(100)), null, 'test');
 
 		observable.subscribe(value => {
 			expect(value).toBe('new value');
@@ -27,7 +27,7 @@ describe('CacheStrategy', () => {
 	it('should cache the new value', done => {
 		const newValue = 'new value';
 
-		const observable = strategy.process(of(newValue).pipe(delay(100)), 'test');
+		const observable = strategy.process(of(newValue).pipe(delay(100)), null, 'test');
 
 		observable.subscribe(value => {
 			expect(value).toEqual(newValue);
