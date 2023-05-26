@@ -11,7 +11,7 @@ export abstract class ResilienceObservableCommand extends BaseCommand {
 		let observable = this.run(...args);
 
 		for (const strategy of this.strategies) {
-			observable = strategy.process(observable, ...args);
+			observable = strategy.process(observable, this, ...args);
 		}
 
 		return observable.pipe(

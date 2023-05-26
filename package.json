@@ -47,7 +47,10 @@
 	"contributors": [
 		"Alexey Filippov <socket.someone@gmail.com>"
 	],
-	"dependencies": {},
+	"dependencies": {
+		"@nestjs/cache-manager": "1.0.0",
+		"cache-manager": "5.2.1"
+	},
 	"devDependencies": {
 		"@commitlint/cli": "17.6.3",
 		"@commitlint/config-angular": "17.6.3",

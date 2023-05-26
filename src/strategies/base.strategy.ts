@@ -3,8 +3,6 @@ import * as EventEmitter from 'events';
 import { Logger } from '@nestjs/common';
 import { BaseCommand } from '../commands';
 
-type ObservableFactory<T> = () => Promise<T> | Observable<T>;
-
 export abstract class Strategy<Options = any> extends EventEmitter {
 	protected readonly logger = new Logger(this.constructor.name);
 
