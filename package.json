@@ -49,7 +49,7 @@
 	],
 	"dependencies": {
 		"@nestjs/cache-manager": "1.0.0",
-		"cache-manager": "5.2.2"
+		"cache-manager": "5.2.3"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "17.6.5",
