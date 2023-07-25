@@ -853,10 +853,10 @@
     path-to-regexp "3.2.0"
     tslib "2.6.0"
 
-"@nestjs/testing@10.1.0":
-  version "10.1.0"
-  resolved "https://registry.npmjs.org/@nestjs/testing/-/testing-10.1.0.tgz#f40a79df1a2bd01c7363c1d1d212a22481eb5c17"
-  integrity sha512-TqV/21PuU5GJ543oqLTrmQhWUiWwB7DDRcj5cknUdaOst+Kkwp0Sad3/5svcWgOB+QfFbwYlvIDeCkKJshZzPg==
+"@nestjs/testing@10.1.1":
+  version "10.1.1"
+  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-10.1.1.tgz#e3964ebeb57ff76d6a5e3c3e5ed04e17c1c2e1b4"
+  integrity sha512-FIbcwMxy3BOJuM3wKyrk1Vxn7NIXvqfDTLXiQ4WRLflpLSdqyj5MZ3Nsm6U/Dgl5Hg99GKY7+aRE7yd9cHE7EA==
   dependencies:
     tslib "2.6.0"
 
