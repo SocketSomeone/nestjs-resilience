@@ -832,10 +832,10 @@
   resolved "https://registry.yarnpkg.com/@nestjs/cache-manager/-/cache-manager-2.1.0.tgz#e4dadc4ba9c02c059db4dac5e0b5513466e2895a"
   integrity sha512-9kep3a8Mq5cMuXN/anGhSYc0P48CRBXk5wyJJRBFxhNkCH8AIzZF4CASGVDIEMmm3OjVcEUHojjyJwCODS17Qw==
 
-"@nestjs/common@10.1.0":
-  version "10.1.0"
-  resolved "https://registry.npmjs.org/@nestjs/common/-/common-10.1.0.tgz#96b3c38c83db846886fa67bc8f3a8347f4e38b32"
-  integrity sha512-3GNOuDjeAqEVt5Zjia3ZSK55Jg80hIIkq52BOzU+LkCjFgbuEhDot80lCKu05WyntAMAq5wREoDRGEGlSVxENw==
+"@nestjs/common@10.1.1":
+  version "10.1.1"
+  resolved "https://registry.yarnpkg.com/@nestjs/common/-/common-10.1.1.tgz#2f27ceadddc53bbb57467b7f53a37f6cca625577"
+  integrity sha512-LfGBo32+C8H8Gy6U2nYs6oQbqBD9TUoHqNjkEpXdfxBqKgZvaSeXZ+heqI/h6TXfeM3gsYSj3X7M9jcyd0AyhA==
   dependencies:
     uid "2.0.2"
     iterare "1.2.1"
