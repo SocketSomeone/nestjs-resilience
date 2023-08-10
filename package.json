@@ -49,7 +49,6 @@
 		"Alexey Filippov <socket.someone@gmail.com>"
 	],
 	"dependencies": {
-		"@nestjs/cache-manager": "2.1.0",
 		"cache-manager": "5.2.3"
 	},
 	"devDependencies": {

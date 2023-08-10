@@ -1,10 +1,9 @@
 import { Global, Module } from '@nestjs/common';
 import { ResilienceFactory } from './resilience.factory';
 import { ResilienceService } from './resilience.service';
-import { ResilienceMetrics } from './resilience.metrics';
 import { ResilienceEventBus } from './resilience.event-bus';
-import { ResilienceStates } from './resilience.states';
-import { CacheModule } from '@nestjs/cache-manager';
+import { ConfigurableModuleClass } from './resilience.module-definition';
+import { ResilienceStatesManager } from './resilience.states-manager';
 
 const eventBusProvider = {
 	provide: ResilienceEventBus,
@@ -13,24 +12,7 @@ const eventBusProvider = {
 
 @Global()
 @Module({
-	imports: [
-		CacheModule.register({
-			isGlobal: true
-		})
-	],
-	providers: [
-		eventBusProvider,
-		ResilienceStates,
-		ResilienceFactory,
-		ResilienceService,
-		ResilienceMetrics
-	],
-	exports: [
-		eventBusProvider,
-		ResilienceStates,
-		ResilienceFactory,
-		ResilienceService,
-		ResilienceMetrics
-	]
+	providers: [eventBusProvider, ResilienceStatesManager, ResilienceFactory, ResilienceService],
+	exports: [eventBusProvider, ResilienceFactory, ResilienceService]
 })
-export class ResilienceModule {}
+export class ResilienceModule extends ConfigurableModuleClass {}

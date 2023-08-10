@@ -1,15 +1,15 @@
 import { Strategy } from './base.strategy';
-import { Observable, throwError } from 'rxjs';
+import { from, Observable, switchMap, throwError } from 'rxjs';
 import { ThrottlerException } from '../exceptions';
 import { ThrottleOptions } from '../interfaces';
+import { ResilienceStatesManager } from '../resilience.states-manager';
+import { BaseCommand } from '../commands';
 
 export class ThrottleStrategy extends Strategy<ThrottleOptions> {
 	private static readonly DEFAULT_OPTIONS: ThrottleOptions = {
 		ttl: 1000,
 		limit: 10
 	};
-
-	private records: number[] = [];
 
 	public constructor(options?: ThrottleOptions) {
 		super({ ...ThrottleStrategy.DEFAULT_OPTIONS, ...options });
@@ -23,22 +23,27 @@ export class ThrottleStrategy extends Strategy<ThrottleOptions> {
 		}
 	}
 
-	public process<T>(observable: Observable<T>): Observable<T> {
+	public process<T>(observable: Observable<T>, command: BaseCommand): Observable<T> {
+		const cacheManager = ResilienceStatesManager.getInstance();
+
 		const now = Date.now();
 		const expired = now - this.options.ttl;
 
-		this.records = this.records.filter(record => record > expired);
+		const key = [this.name, command].join('/');
+		const records$ = from(cacheManager.wrap<number[]>(key, async () => [], this.options.ttl));
 
-		if (this.isLimitReached) {
-			return throwError(() => new ThrottlerException());
-		}
+		return records$.pipe(
+			switchMap(records => {
+				records = records.filter(record => record >= expired);
 
-		this.records.push(now);
+				if (records.length >= this.options.limit) {
+					return throwError(() => new ThrottlerException());
+				}
 
-		return observable;
-	}
+				records = [...records, now];
 
-	public get isLimitReached(): boolean {
-		return this.records.length >= this.options.limit;
+				return from(cacheManager.set(key, records)).pipe(switchMap(() => observable));
+			})
+		);
 	}
 }

@@ -3,6 +3,8 @@ import { Logger } from '@nestjs/common';
 import { BaseCommand } from '../commands';
 
 export abstract class Strategy<Options = any> {
+	protected readonly name = this.constructor.name;
+
 	protected readonly logger = new Logger(this.constructor.name);
 
 	protected constructor(protected options: Options) {}

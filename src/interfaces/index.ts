@@ -4,6 +4,7 @@ export * from './circuit-breaker-options.interface';
 export * from './fallback-options.interface';
 export * from './health-check-options.interface';
 export * from './resilience-events.interface';
+export * from './resilience-module-options.interface';
 export * from './retry-options.interface';
 export * from './throttle-options.interface';
 export * from './timeout-options.interface';

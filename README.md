@@ -49,10 +49,13 @@ import { Module } from '@nestjs/common';
 import { ResilienceModule } from 'nestjs-resilience';
 
 @Module({
-    imports: [ResilienceModule]
+    imports: [ResilienceModule.forRoot()]
 })
 export class AppModule {}
 ```
+
+Use `store` field to configure cache (e.x. `store: new RedisStore({ host: 'localhost', port: 6379 })`).
+We use `memory` from `cache-manager` store by default.
 
 ### Ways to use
 
@@ -192,24 +195,6 @@ What it means? Let's take a look at the example:
 | `HealthCheckStrategy`    | Check the health of a service                                        |
 | `CacheStrategy`          | Cache the result of a service call                                   |
 
-### Metrics
-
-We collect metrics for each command. You can use it to monitor the health of your services.
-    
-```typescript
-import { Injectable } from '@nestjs/common';
-import { ResilienceMetrics } from 'nestjs-resilience';
-
-@Injectable()
-export class MetricsService {
-    constructor(private readonly metrics: ResilienceMetrics) {
-    }
-
-    getMetrics(): any {
-        return this.metrics.getMetrics();
-    }
-}
-```
 
 
 ## Stay in touch

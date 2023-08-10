@@ -1,7 +1,7 @@
 import { ResilienceCommand, ResilienceModule, ResilienceService } from '../src';
 import { Inject, Injectable } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import { ResilienceStates } from '../src/resilience.states';
+import { memoryStore } from 'cache-manager';
 
 interface User {
 	id: string;
@@ -40,16 +40,19 @@ class GetUserByIdCommand extends ResilienceCommand {
 }
 
 describe('Resilience Command', () => {
-	let resilienceService: ResilienceService, statesService: ResilienceStates;
+	let resilienceService: ResilienceService;
 
 	beforeEach(async () => {
 		const moduleRef = await Test.createTestingModule({
-			imports: [ResilienceModule],
+			imports: [
+				ResilienceModule.forRoot({
+					store: memoryStore()
+				})
+			],
 			providers: [UsersService, GetUserByIdCommand]
 		}).compile();
 
 		resilienceService = moduleRef.get<ResilienceService>(ResilienceService);
-		statesService = moduleRef.get<ResilienceStates>(ResilienceStates);
 	});
 
 	it('should be able to get a command', async () => {
