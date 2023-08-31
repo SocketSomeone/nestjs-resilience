@@ -855,10 +855,10 @@
     path-to-regexp "3.2.0"
     tslib "2.6.2"
 
-"@nestjs/testing@10.2.2":
-  version "10.2.2"
-  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-10.2.2.tgz#000e38cb058b5aa46e5a7dfecc17ae6dd5d88164"
-  integrity sha512-zczk6gLfxyVz+rxdNkplGZHM7xpKuknbeYZCCY1CppnAsaCNbFDcqtBdYlDy0mAaUFXv9BFcOC6rWPUXg0KZ1Q==
+"@nestjs/testing@10.2.3":
+  version "10.2.3"
+  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-10.2.3.tgz#eca5562bc89662d20a1cc0c1bc57da771bff698a"
+  integrity sha512-+EaUx3gQVQgosuLxr+pwfPAhIobgRCfyBe4l/9jhquxW7UwTXhXjOIeL45zdqSXLsKn2++F+oKYRi9cceu3vWQ==
   dependencies:
     tslib "2.6.2"
 
