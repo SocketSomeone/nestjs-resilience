@@ -1852,13 +1852,14 @@ cacache@^17.0.0:
     tar "^6.1.11"
     unique-filename "^3.0.0"
 
-cache-manager@5.2.4:
-  version "5.2.4"
-  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-5.2.4.tgz#01bebe2cc6bef993e3e959d59d3a25a3f2658df1"
-  integrity sha512-gkuCjug16NdGvKm/sydxGVx17uffrSWcEe2xraBtwRCgdYcFxwJAla4OYpASAZT2yhSoxgDiWL9XH6IAChcZJA==
+cache-manager@5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-5.3.0.tgz#a6951cba5e993c045dfef94affd2f55c94f61790"
+  integrity sha512-S4Ufb/XRflBshN2JrMrwW4Sjh3KziKx/0mwj0cAQjENQzKGXPj8y0Tf2nUVxuzKL347CVtxdUyWrqkYnL5dbfg==
   dependencies:
     lodash.clonedeep "^4.5.0"
-    lru-cache "^10.0.1"
+    lru-cache "^10.0.2"
+    promise-coalesce "^1.1.1"
 
 cacheable-lookup@^7.0.0:
   version "7.0.0"
@@ -4567,10 +4568,12 @@ lowercase-keys@^3.0.0:
   resolved "https://registry.npmjs.org/lowercase-keys/-/lowercase-keys-3.0.0.tgz#c5e7d442e37ead247ae9db117a9d0a467c89d4f2"
   integrity sha512-ozCC6gdQ+glXOQsveKD0YsDy8DSQFjDTz4zyzEHNV5+JP5D62LmfDZ6o1cycFx9ouG940M5dE8C8CTewdj2YWQ==
 
-lru-cache@^10.0.1, "lru-cache@^9.1.1 || ^10.0.0":
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.0.1.tgz#0a3be479df549cca0e5d693ac402ff19537a6b7a"
-  integrity sha512-IJ4uwUTi2qCccrioU6g9g/5rvvVl13bsdczUUcqbciD9iLr095yj8DQKdObriEvuNSx325N1rV1O0sJFszx75g==
+lru-cache@^10.0.2, "lru-cache@^9.1.1 || ^10.0.0":
+  version "10.0.2"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.0.2.tgz#34504678cc3266b09b8dfd6fab4e1515258271b7"
+  integrity sha512-Yj9mA8fPiVgOUpByoTZO5pNrcl5Yk37FcSHsUINpAsaBIEZIuqcCclDZJCVxqQShDsmYX8QG63svJiTbOATZwg==
+  dependencies:
+    semver "^7.3.5"
 
 lru-cache@^5.1.1:
   version "5.1.1"
@@ -5310,6 +5313,11 @@ proc-log@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/proc-log/-/proc-log-3.0.0.tgz#fb05ef83ccd64fd7b20bbe9c8c1070fc08338dd8"
   integrity sha512-++Vn7NS4Xf9NacaU9Xq3URUuqZETPsf8L4j5/ckhaRYsfPeRyzGw+iDjFhV/Jr3uNmTvvddEJFWh5R1gRgUH8A==
+
+promise-coalesce@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/promise-coalesce/-/promise-coalesce-1.1.1.tgz#01f0d4c06060507fb0ca1f1cca8fa90ada1e22ba"
+  integrity sha512-k7+VaIwZc5dRfSF6RELqRY1+LCmcCkrnuNV9HzIpA6iwRHKke+j9yb0LBTTHQ2RRgf6AlMl9TntuTzcgV/BZwg==
 
 promise-inflight@^1.0.1:
   version "1.0.1"
