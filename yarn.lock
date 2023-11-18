@@ -1837,10 +1837,10 @@ cacache@^17.0.0:
     tar "^6.1.11"
     unique-filename "^3.0.0"
 
-cache-manager@5.3.0:
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-5.3.0.tgz#a6951cba5e993c045dfef94affd2f55c94f61790"
-  integrity sha512-S4Ufb/XRflBshN2JrMrwW4Sjh3KziKx/0mwj0cAQjENQzKGXPj8y0Tf2nUVxuzKL347CVtxdUyWrqkYnL5dbfg==
+cache-manager@5.3.1:
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-5.3.1.tgz#80e4edd593b2d7f7b2b2199dc6fbb4748432bc47"
+  integrity sha512-9HP6nc1ZqyZgcVEpy5XS2ns9MYE6cPEM6InA1wQhR6M7GviJzLH2NTFYnf3NEfRmLE351NCSkDo2VISX8dlG+w==
   dependencies:
     lodash.clonedeep "^4.5.0"
     lru-cache "^10.0.2"
