@@ -920,10 +920,10 @@
     path-to-regexp "3.2.0"
     tslib "2.6.2"
 
-"@nestjs/testing@10.2.9":
-  version "10.2.9"
-  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-10.2.9.tgz#526e1e48b431651533eb5aa47860e60f12642a46"
-  integrity sha512-E+66R27Op+WAQHHH6RnUsz7QpKApl4Bn42nheCAGvS/sxbaDJ8RKtm4stE4Iz2aioPCUvRi8j4z8Ze73k0CcGQ==
+"@nestjs/testing@10.2.10":
+  version "10.2.10"
+  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-10.2.10.tgz#bd0a1e86622f7aa8cf6d8804af0f23b9444c3099"
+  integrity sha512-IVLUnPz/+fkBtPATYfqTIP+phN9yjkXejmj+JyhmcfPJZpxBmD1i9VSMqa4u54l37j0xkGPscQ0IXpbhqMYUKw==
   dependencies:
     tslib "2.6.2"
 
