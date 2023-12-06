@@ -16,13 +16,16 @@ interface CircuitBreakerState {
 	failuresCount: number;
 
 	openedAt: number;
+
+	lastRequestTimeMs: number;
 }
 
 export class CircuitBreakerStrategy extends Strategy<CircuitBreakerOptions> {
 	private static readonly DEFAULT_OPTIONS: CircuitBreakerOptions = {
 		requestVolumeThreshold: 20,
 		sleepWindowInMilliseconds: 5000,
-		errorThresholdPercentage: 50
+		errorThresholdPercentage: 50,
+		rollingWindowInMilliseconds: 20000
 	};
 
 	private readonly cacheStrategy = new CacheStrategy(this.options.cachedTimeoutInMilliseconds);
@@ -42,7 +45,8 @@ export class CircuitBreakerStrategy extends Strategy<CircuitBreakerOptions> {
 				status: CircuitBreakerStatus.Closed,
 				openedAt: 0,
 				failuresCount: 0,
-				succeedsCount: 0
+				succeedsCount: 0,
+				lastRequestTimeMs: 0
 			}))
 		);
 
@@ -52,6 +56,18 @@ export class CircuitBreakerStrategy extends Strategy<CircuitBreakerOptions> {
 				const isHalfOpen = () => state.status === CircuitBreakerStatus.HalfOpen;
 				const failuresPercentage = () =>
 					(state.failuresCount / this.options.requestVolumeThreshold) * 100;
+
+				if (this.options.rollingWindowInMilliseconds) {
+					const rollingWindowHasExpired = () =>
+						Date.now() >=
+						state.lastRequestTimeMs + this.options.rollingWindowInMilliseconds;
+					if (rollingWindowHasExpired()) {
+						state.failuresCount = 0;
+						state.succeedsCount = 0;
+						state.openedAt = 0;
+						state.lastRequestTimeMs = Date.now();
+					}
+				}
 
 				if (isOpen()) {
 					if (state.openedAt + this.options.sleepWindowInMilliseconds > Date.now()) {
