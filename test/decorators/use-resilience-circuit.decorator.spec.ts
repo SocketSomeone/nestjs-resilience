@@ -40,7 +40,7 @@ describe('Resilience Decorator', () => {
 		await expect(async () => await userService.getUser('1')).rejects.toThrow(new Error('err')); // 2nd call. 40% failures
 		await expect(async () => await userService.getUser('1')).rejects.toThrow(new Error('err')); // 3rd call. 60% failures
 
-		// Circuit should be open now, expect CircuitOpenedException
+		// Circuit should be open now, expect circuit opened error
 		await expect(async () => await userService.getUser('1')).rejects.toThrow(
 			new Error('Circuit is open')
 		);
