@@ -65,9 +65,9 @@ export class CircuitBreakerStrategy extends Strategy<CircuitBreakerOptions> {
 						state.failuresCount = 0;
 						state.succeedsCount = 0;
 						state.openedAt = 0;
-						state.lastRequestTimeMs = Date.now();
 					}
 				}
+				state.lastRequestTimeMs = Date.now();
 
 				if (isOpen()) {
 					if (state.openedAt + this.options.sleepWindowInMilliseconds > Date.now()) {
