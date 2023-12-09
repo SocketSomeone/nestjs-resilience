@@ -5,6 +5,7 @@ import { FallbackOptions } from './fallback-options.interface';
 export interface CircuitBreakerOptions {
 	requestVolumeThreshold?: number;
 	sleepWindowInMilliseconds?: number;
+	rollingWindowInMilliseconds?: number;
 	errorThresholdPercentage?: number;
 	timeoutInMilliseconds?: TimeoutOptions;
 	cachedTimeoutInMilliseconds?: CacheOptions;
