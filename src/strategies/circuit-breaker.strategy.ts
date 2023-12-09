@@ -67,6 +67,7 @@ export class CircuitBreakerStrategy extends Strategy<CircuitBreakerOptions> {
 						state.openedAt = 0;
 					}
 				}
+				
 				state.lastRequestTimeMs = Date.now();
 
 				if (isOpen()) {
