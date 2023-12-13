@@ -1,13 +1,25 @@
-import { ResilienceCommand } from '../../src';
+import { ResilienceCommand, ResilienceEventBus } from '../../src';
 import { retryStrategy } from './fixtures/strategy.fixture';
 
 class TestCommand extends ResilienceCommand {
-	protected strategies = [retryStrategy];
-
 	private count = 0;
+
+	private isError = false;
+
+	public setCount(count: number) {
+		this.count = count;
+	}
+
+	public setIsError(isError: boolean) {
+		this.isError = isError;
+	}
 
 	public async run() {
 		this.count += 1;
+
+		if (this.isError) {
+			throw new Error('Test');
+		}
 
 		if (this.count !== 3) {
 			throw new Error('Test');
@@ -18,10 +30,35 @@ class TestCommand extends ResilienceCommand {
 }
 
 describe('Resilience Command', () => {
+	const command = new TestCommand([retryStrategy]);
+	const eventBus = ResilienceEventBus.getInstance();
+
+	let callback = jest.fn();
+
+	beforeEach(() => {
+		command.setCount(0);
+		command.setIsError(false);
+		callback = jest.fn();
+	});
+
 	it('should be able to retry a promise', async () => {
-		const command = new TestCommand([retryStrategy]);
+		eventBus.on('success', callback);
+
 		const value = await command.execute();
 
 		expect(value).toBe(1000);
+		expect(callback).toHaveBeenCalled();
+	});
+
+	it('should emit the failure', async () => {
+		command.setIsError(true);
+		eventBus.on('failure', callback);
+
+		try {
+			await command.execute();
+		} catch (error) {
+			expect(error.message).toBe('Test');
+			expect(callback).toHaveBeenCalled();
+		}
 	});
 });

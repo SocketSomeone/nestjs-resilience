@@ -10,7 +10,7 @@ export type ReturnTypeOfRun<T extends BaseCommand> = ReturnType<T['run']>;
 export abstract class BaseCommand {
 	protected readonly logger: Logger;
 
-	protected readonly eventBus = new ResilienceEventBus();
+	protected readonly eventBus = ResilienceEventBus.getInstance();
 
 	protected readonly strategies: Strategy[];
 
@@ -42,13 +42,11 @@ export abstract class BaseCommand {
 		if (error instanceof TimeoutException) {
 			this.logger.debug('Command timed out');
 			this.eventBus.emit(ResilienceEventType.Timeout, this);
-			return error;
 		}
 
 		if (error instanceof CircuitOpenedException) {
 			this.logger.debug('Command short-circuited');
 			this.eventBus.emit(ResilienceEventType.ShortCircuit, this);
-			return error;
 		}
 
 		this.logger.debug('Command failed');

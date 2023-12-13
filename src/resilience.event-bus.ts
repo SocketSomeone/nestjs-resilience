@@ -8,6 +8,8 @@ export class ResilienceEventBus {
 		return ResilienceEventBus.instance;
 	}
 
+	private constructor() {}
+
 	private readonly emitter = new EventEmitter();
 
 	public on<K extends keyof ResilienceEvents>(event: K, fn: (args: ResilienceEvents[K]) => void) {
