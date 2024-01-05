@@ -52,7 +52,7 @@
 		"cache-manager": "5.3.2"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "18.4.3",
+		"@commitlint/cli": "18.4.4",
 		"@commitlint/config-angular": "18.4.4",
 		"@favware/npm-deprecate": "1.0.7",
 		"@nestjs/common": "10.3.0",
