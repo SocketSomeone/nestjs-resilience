@@ -1841,13 +1841,14 @@ cacache@^17.0.0:
     tar "^6.1.11"
     unique-filename "^3.0.0"
 
-cache-manager@5.4.0:
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-5.4.0.tgz#cec47dbea8e49e0f6970d117be10172b4e621358"
-  integrity sha512-FS7o8vqJosnLpu9rh2gQTo8EOzCRJLF1BJ4XDEUDMqcfvs7SJZs5iuoFTXLauzQ3S5v8sBAST1pCwMaurpyi1A==
+cache-manager@5.5.0:
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-5.5.0.tgz#d93eeb8d4612fcf729465ebbaa2d5a5d7055359a"
+  integrity sha512-zndX+tczQ7jzlYiXW5++2iCkJicDjNWjHom60gC7B4Epn+Bro8/NZyrTYhBWLT3tbz0UCPv+zf9CkX6fI3yK7A==
   dependencies:
+    eventemitter3 "^5.0.1"
     lodash.clonedeep "^4.5.0"
-    lru-cache "^10.1.0"
+    lru-cache "^10.2.0"
     promise-coalesce "^1.1.2"
 
 cacheable-lookup@^7.0.0:
@@ -4623,10 +4624,10 @@ lowercase-keys@^3.0.0:
   resolved "https://registry.npmjs.org/lowercase-keys/-/lowercase-keys-3.0.0.tgz#c5e7d442e37ead247ae9db117a9d0a467c89d4f2"
   integrity sha512-ozCC6gdQ+glXOQsveKD0YsDy8DSQFjDTz4zyzEHNV5+JP5D62LmfDZ6o1cycFx9ouG940M5dE8C8CTewdj2YWQ==
 
-lru-cache@^10.1.0, "lru-cache@^9.1.1 || ^10.0.0":
-  version "10.1.0"
-  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.1.0.tgz#2098d41c2dc56500e6c88584aa656c84de7d0484"
-  integrity sha512-/1clY/ui8CzjKFyjdvwPWJUYKiFVXG2I2cY0ssG7h4+hwk+XOIX7ZSG9Q7TW8TW3Kp3BUSqgFWBLgL4PJ+Blag==
+lru-cache@^10.2.0, "lru-cache@^9.1.1 || ^10.0.0":
+  version "10.2.0"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.2.0.tgz#0bd445ca57363465900f4d1f9bd8db343a4d95c3"
+  integrity sha512-2bIM8x+VAf6JT4bKAljS1qUWgMsqZRPGJS6FSahIMPVvctcNhyVp7AJu7quxOW9jwkryBReKZY5tY5JYv2n/7Q==
 
 lru-cache@^5.1.1:
   version "5.1.1"
