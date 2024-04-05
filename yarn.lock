@@ -1841,10 +1841,10 @@ cacache@^17.0.0:
     tar "^6.1.11"
     unique-filename "^3.0.0"
 
-cache-manager@5.5.0:
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-5.5.0.tgz#d93eeb8d4612fcf729465ebbaa2d5a5d7055359a"
-  integrity sha512-zndX+tczQ7jzlYiXW5++2iCkJicDjNWjHom60gC7B4Epn+Bro8/NZyrTYhBWLT3tbz0UCPv+zf9CkX6fI3yK7A==
+cache-manager@5.5.1:
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-5.5.1.tgz#b86a3995e9c0d2b26f799c6c483fda470a3d5794"
+  integrity sha512-QYZFOjZTTennYdN3NNCKh+yq452+wQ4ChyL40jkEyghIgg5Ugwb4YO8ARIIF1fvTBkgDLlLTYFaxZVaPGmQ92A==
   dependencies:
     eventemitter3 "^5.0.1"
     lodash.clonedeep "^4.5.0"
