@@ -1,9 +1,9 @@
-import { Cache, memoryStore, Milliseconds, Store } from 'cache-manager';
+import { memoryStore, Milliseconds, Store } from 'cache-manager';
 import { Inject, Optional } from '@nestjs/common';
 import { MODULE_OPTIONS_TOKEN } from './resilience.module-definition';
 import { ResilienceModuleOptions } from './interfaces';
 
-export class ResilienceStatesManager implements Cache {
+export class ResilienceStatesManager {
 	private static readonly PREFIX = 'nestjs-resilience/';
 
 	private static instance: ResilienceStatesManager;
