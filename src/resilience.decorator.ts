@@ -22,13 +22,13 @@ function ResilienceDecorator(baseClass: any, strategies: Strategy[]) {
 
 		const command = new Command();
 
-		descriptor.value = function (...args: any[]) {
-			if (command.run === null) {
-				command.run = originalMethod.bind(this);
-			}
+		descriptor.value = new Proxy(originalMethod, {
+			apply: async (targetMethod, thisArg, args) => {
+				command.run = (...runArgs: any[]) => targetMethod.apply(thisArg, runArgs);
 
-			return command.execute(...args);
-		};
+				return command.execute(...args);
+			}
+		});
 
 		return descriptor;
 	};
