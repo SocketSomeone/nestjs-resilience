@@ -914,12 +914,12 @@
     path-to-regexp "3.2.0"
     tslib "2.6.3"
 
-"@nestjs/testing@10.3.9":
-  version "10.3.9"
-  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-10.3.9.tgz#27fb0e23b129147f8de100ac40645ebf6a865c3a"
-  integrity sha512-z24SdpZIRtYyM5s2vnu7rbBosXJY/KcAP7oJlwgFa/h/z/wg8gzyoKy5lhibH//OZNO+pYKajV5wczxuy5WeAg==
+"@nestjs/testing@10.3.10":
+  version "10.3.10"
+  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-10.3.10.tgz#6ed3c821fddf868665cc5ddc8591ee6eaab8a916"
+  integrity sha512-i3HAtVQJijxNxJq1k39aelyJlyEIBRONys7IipH/4r8W0J+M1V+y5EKDOyi4j1SdNSb/vmNyWpZ2/ewZjl3kRA==
   dependencies:
-    tslib "2.6.2"
+    tslib "2.6.3"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
