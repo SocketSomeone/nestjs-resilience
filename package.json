@@ -49,7 +49,7 @@
 		"Alexey Filippov <socket.someone@gmail.com>"
 	],
 	"dependencies": {
-		"cache-manager": "5.7.1"
+		"cache-manager": "5.7.2"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "19.3.0",
