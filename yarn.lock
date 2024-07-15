@@ -1829,14 +1829,14 @@ cacache@^17.0.0:
     tar "^6.1.11"
     unique-filename "^3.0.0"
 
-cache-manager@5.7.2:
-  version "5.7.2"
-  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-5.7.2.tgz#dc3c83572aaff1a837e00e8afc6d8de1acbf95ff"
-  integrity sha512-YJ4YL4hCbn2P11vK85eo1W8nF1L9FBnRvqzRmGEy0qwNxojrsKe8U09zvRoQFo1hidbw4wfTsyce8HIo8Pvvyw==
+cache-manager@5.7.3:
+  version "5.7.3"
+  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-5.7.3.tgz#17ae136c608a90f169559c489c4ab91ba1892cdf"
+  integrity sha512-Vp2gd2aDm/MXdEWD0FLdOflvcVj4rdJ1FFmPUeOKq+fuL7MEUcezbTWxQmVB1TTN5Ig92CabMfi5z+HyQwVg9A==
   dependencies:
     eventemitter3 "^5.0.1"
     lodash.clonedeep "^4.5.0"
-    lru-cache "^11.0.0"
+    lru-cache "^10.2.2"
     promise-coalesce "^1.1.2"
 
 cacheable-lookup@^7.0.0:
@@ -4153,6 +4153,11 @@ lowercase-keys@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/lowercase-keys/-/lowercase-keys-3.0.0.tgz#c5e7d442e37ead247ae9db117a9d0a467c89d4f2"
   integrity sha512-ozCC6gdQ+glXOQsveKD0YsDy8DSQFjDTz4zyzEHNV5+JP5D62LmfDZ6o1cycFx9ouG940M5dE8C8CTewdj2YWQ==
+
+lru-cache@^10.2.2:
+  version "10.4.3"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.4.3.tgz#410fc8a17b70e598013df257c2446b7f3383f119"
+  integrity sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==
 
 lru-cache@^11.0.0:
   version "11.0.0"
