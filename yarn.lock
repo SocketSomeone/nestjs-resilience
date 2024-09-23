@@ -913,10 +913,10 @@
     path-to-regexp "3.3.0"
     tslib "2.7.0"
 
-"@nestjs/testing@10.4.3":
-  version "10.4.3"
-  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-10.4.3.tgz#7dc71edaf222d1f2dee1e860abcbc4ed8c2e61d9"
-  integrity sha512-SBNWrMU51YAlYmW86wyjlGZ2uLnASNiOPD0lBcNIlxxei0b05/aI3nh7OPuxbXQUdedUJfPq2d2jZj4TRG4S0w==
+"@nestjs/testing@10.4.4":
+  version "10.4.4"
+  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-10.4.4.tgz#1f73f4b6c8d7a996a267ec498679e53763936963"
+  integrity sha512-qRGFj51A5RM7JqA8pcyEwSLA3Y0dle/PAZ8oxP0suimoCusRY3Tk7wYqutZdCNj1ATb678SDaUZDHk2pwSv9/g==
   dependencies:
     tslib "2.7.0"
 
