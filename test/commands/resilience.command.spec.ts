@@ -1,4 +1,4 @@
-import { ResilienceCommand, ResilienceEventBus } from '../../src';
+import { ResilienceCommand, ResilienceEventBus, ResilienceEventType } from '../../src';
 import { retryStrategy } from './fixtures/strategy.fixture';
 
 class TestCommand extends ResilienceCommand {
@@ -42,7 +42,7 @@ describe('Resilience Command', () => {
 	});
 
 	it('should be able to retry a promise', async () => {
-		eventBus.on('success', callback);
+		eventBus.on(ResilienceEventType.Success, callback);
 
 		const value = await command.execute();
 
@@ -52,7 +52,7 @@ describe('Resilience Command', () => {
 
 	it('should emit the failure', async () => {
 		command.setIsError(true);
-		eventBus.on('failure', callback);
+		eventBus.on(ResilienceEventType.Failure, callback);
 
 		try {
 			await command.execute();
