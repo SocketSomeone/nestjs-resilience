@@ -1,1 +1,0 @@
-npx commitlint --config .commitlintrc.json --edit $HUSKY_GIT_PARAMS
