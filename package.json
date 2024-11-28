@@ -59,7 +59,7 @@
 		"@nestjs/core": "10.4.11",
 		"@nestjs/testing": "10.4.11",
 		"@types/jest": "29.5.14",
-		"@types/node": "22.10.0",
+		"@types/node": "22.10.1",
 		"@typescript-eslint/eslint-plugin": "7.0.0",
 		"@typescript-eslint/parser": "6.21.0",
 		"eslint": "8.57.1",
