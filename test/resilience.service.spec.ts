@@ -1,7 +1,6 @@
 import { ResilienceCommand, ResilienceModule, ResilienceService } from '../src';
 import { Inject, Injectable } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import { memoryStore } from 'cache-manager';
 
 interface User {
 	id: string;
@@ -44,11 +43,7 @@ describe('Resilience Command', () => {
 
 	beforeEach(async () => {
 		const moduleRef = await Test.createTestingModule({
-			imports: [
-				ResilienceModule.forRoot({
-					store: memoryStore()
-				})
-			],
+			imports: [ResilienceModule.forRoot({})],
 			providers: [UsersService, GetUserByIdCommand]
 		}).compile();
 
