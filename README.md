@@ -31,6 +31,7 @@ the tools you need to build robust, failure-resistant services that can withstan
 - **Bulkhead** - Limit the number of concurrent requests to a service
 - **Fallback** - Provide a fallback response when a service is unavailable
 - **Rate Limiting** - Limit the number of requests to a service
+- **Deduplicate** - Prevent duplicate requests from being processed
 
 ## Installation
 
@@ -194,6 +195,7 @@ What it means? Let's take a look at the example:
 | `ThrottleStrategy`       | Limit the number of requests to a service                            |
 | `HealthCheckStrategy`    | Check the health of a service                                        |
 | `CacheStrategy`          | Cache the result of a service call                                   |
+| `DeduplicateStrategy`    | Prevent duplicate requests from being processed                      |
 
 
 
