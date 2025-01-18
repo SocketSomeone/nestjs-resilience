@@ -1,6 +1,7 @@
 export * from './bulkhead-options.interface';
 export * from './cache-options.interface';
 export * from './circuit-breaker-options.interface';
+export * from './dedupe-options.interface';
 export * from './fallback-options.interface';
 export * from './health-check-options.interface';
 export * from './resilience-events.interface';
