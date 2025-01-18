@@ -3,6 +3,7 @@ import {
 	BulkheadStrategy,
 	CacheStrategy,
 	CircuitBreakerStrategy,
+	DedupeStrategy,
 	FallbackStrategy,
 	HealthCheckStrategy,
 	RetryStrategy,
@@ -14,6 +15,7 @@ import {
 	BulkheadOptions,
 	CacheOptions,
 	CircuitBreakerOptions,
+	DedupeOptions,
 	FallbackOptions,
 	HealthCheckOptions,
 	RetryOptions,
@@ -55,6 +57,10 @@ export class ResilienceFactory {
 		return this.createStrategy(TimeoutStrategy, options);
 	}
 
+	public static createDedupeStrategy(options: DedupeOptions) {
+		return this.createStrategy(DedupeStrategy, options);
+	}
+
 	public static createStrategy<T>(strategy: Type<Strategy<T>>, options: T) {
 		return new strategy(options);
 	}
@@ -93,6 +99,10 @@ export class ResilienceFactory {
 
 	public createTimeoutStrategy(options: TimeoutOptions) {
 		return ResilienceFactory.createStrategy(TimeoutStrategy, options);
+	}
+
+	public createDedupeStrategy(options: DedupeOptions) {
+		return ResilienceFactory.createStrategy(DedupeStrategy, options);
 	}
 
 	public createStrategy<T>(strategy: Type<Strategy<T>>, options: T) {

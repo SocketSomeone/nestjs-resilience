@@ -1,5 +1,10 @@
 import {
 	BulkheadStrategy,
+	CacheStrategy,
+	CircuitBreakerStrategy,
+	DedupeStrategy,
+	FallbackStrategy,
+	HealthCheckStrategy,
 	ResilienceFactory,
 	RetryStrategy,
 	Strategy,
@@ -22,6 +27,11 @@ describe('Resilience Factory', () => {
 	};
 
 	expectStrategy(BulkheadStrategy);
+	expectStrategy(CacheStrategy);
+	expectStrategy(CircuitBreakerStrategy);
+	expectStrategy(DedupeStrategy);
+	expectStrategy(FallbackStrategy);
+	expectStrategy(HealthCheckStrategy);
 	expectStrategy(RetryStrategy);
 	expectStrategy(ThrottleStrategy);
 	expectStrategy(TimeoutStrategy);
