@@ -1,7 +1,7 @@
 {
 	"name": "nestjs-resilience",
 	"description": "A module for improving the reliability and fault-tolerance of your NestJS applications",
-	"version": "3.0.0",
+	"version": "3.1.0",
 	"scripts": {
 		"build": "rimraf dist && tsc -p tsconfig.build.json",
 		"prepublish:npm": "npm run build",
