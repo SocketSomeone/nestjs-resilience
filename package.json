@@ -10,7 +10,7 @@
 		"publish:dev": "npm publish --access public --tag dev",
 		"prepare": "husky",
 		"format": "prettier --write \"src/**/*.ts\"",
-		"lint": "eslint --ignore-path .gitignore src/**/*.ts",
+		"lint": "eslint --ignore-pattern .gitignore src/**/*.ts",
 		"test": "jest"
 	},
 	"lint-staged": {
