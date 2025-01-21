@@ -90,7 +90,7 @@ export class CircuitBreakerStrategy extends Strategy<CircuitBreakerOptions> {
 
 				return observable.pipe(
 					tap(() => (state.succeedsCount = state.succeedsCount + 1)),
-					finalize(() => {
+					finalize(async () => {
 						if (
 							state.succeedsCount + state.failuresCount >=
 							this.options.requestVolumeThreshold
@@ -103,7 +103,7 @@ export class CircuitBreakerStrategy extends Strategy<CircuitBreakerOptions> {
 							state.status = CircuitBreakerStatus.Closed;
 						}
 
-						statesManager.set(key, state);
+						await statesManager.set(key, state);
 					}),
 					catchError(error => {
 						state.failuresCount = state.failuresCount + 1;

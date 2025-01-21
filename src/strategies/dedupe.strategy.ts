@@ -23,7 +23,7 @@ export class DedupeStrategy extends Strategy<DedupeOptions> {
 		const key = this.options.keyFn(args, command);
 
 		if (this.activeCommands.has(key)) {
-			return this.activeCommands.get(key)!.asObservable();
+			return this.activeCommands.get(key).asObservable();
 		}
 
 		const result = observable;
