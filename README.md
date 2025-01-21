@@ -31,7 +31,7 @@ the tools you need to build robust, failure-resistant services that can withstan
 - **Bulkhead** - Limit the number of concurrent requests to a service
 - **Fallback** - Provide a fallback response when a service is unavailable
 - **Rate Limiting** - Limit the number of requests to a service
-- **Deduplicate** - Prevent duplicate requests from being processed
+- **De duplicate** - Prevent duplicate requests from being processed
 
 ## Installation
 
