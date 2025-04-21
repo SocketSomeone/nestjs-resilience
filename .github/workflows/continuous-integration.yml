@@ -14,10 +14,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Node v20
+      - name: Install Node v22
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: yarn
           cache-dependency-path: yarn.lock
 
@@ -29,10 +29,10 @@ jobs:
 
       - name: Run Build
         run: yarn build
-      
+
       - name: Run tests
         run: yarn test --coverage
-      
+
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5
         env:
