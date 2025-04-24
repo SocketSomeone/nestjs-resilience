@@ -30,8 +30,8 @@ jobs:
       - name: Run Build
         run: yarn build
 
-      - name: Run tests
-        run: yarn test --ci --passWithNoTests --coverage
+      - name: Run Tests
+        run: yarn test:ci
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5
