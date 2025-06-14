@@ -25,7 +25,7 @@ describe('ThrottlerStrategy', () => {
 				ttl: 0,
 				limit: 5
 			};
-			expect(() => new ThrottleStrategy(options)).toThrowError(RangeError);
+			expect(() => new ThrottleStrategy(options)).toThrow(RangeError);
 		});
 
 		it('should throw error if limit is less than or equal to 0', () => {
@@ -33,7 +33,7 @@ describe('ThrottlerStrategy', () => {
 				ttl: 500,
 				limit: 0
 			};
-			expect(() => new ThrottleStrategy(options)).toThrowError(RangeError);
+			expect(() => new ThrottleStrategy(options)).toThrow(RangeError);
 		});
 	});
 
