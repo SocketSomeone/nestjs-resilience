@@ -1387,10 +1387,10 @@
     "@emnapi/runtime" "^1.4.3"
     "@tybys/wasm-util" "^0.9.0"
 
-"@nestjs/common@11.1.4":
-  version "11.1.4"
-  resolved "https://registry.yarnpkg.com/@nestjs/common/-/common-11.1.4.tgz#4a9646f8a1aea8a60e3e2ccf76a4f432866cc2ad"
-  integrity sha512-W6+CNJtRJhFpat5Uz/UfEe8IHAhUgYvsq6QE0BeJGw+ntwOS2PVyQx5rzKwwwxDyYE11lEqUmleSVtDE8koElw==
+"@nestjs/common@11.1.5":
+  version "11.1.5"
+  resolved "https://registry.yarnpkg.com/@nestjs/common/-/common-11.1.5.tgz#bc491d049e21f91216189b06e56f801730a8a3d1"
+  integrity sha512-DQpWdr3ShO0BHWkHl3I4W/jR6R3pDtxyBlmrpTuZF+PXxQyBXNvsUne0Wyo6QHPEDi+pAz9XchBFoKbqOhcdTg==
   dependencies:
     uid "2.0.2"
     file-type "21.0.0"
