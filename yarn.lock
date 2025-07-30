@@ -2496,10 +2496,10 @@ cacache@^19.0.1:
     tar "^7.4.3"
     unique-filename "^4.0.0"
 
-cache-manager@7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-7.0.1.tgz#018934791251638efe13b1ab1e2b2c0c9d49d0ca"
-  integrity sha512-Hd7FOyTtwhwLgkKeKQWEw6Ixj63VKuUWYwkGgL6g6Q7eISW6uxci5+DtUXlqI0gtbLCPPdhL1+HP9Zht27DbrA==
+cache-manager@7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-7.1.0.tgz#d16bff46e6ca42ade0429bbacfc51ac477416437"
+  integrity sha512-CzrGUt58dxUnbFo7OcmM5ee0SEo27ulCiXQIy6GbUMoSDs1UVlUSO00i+cPS+q994zcEy8KPN2JJF05Z8HEeiw==
   dependencies:
     keyv "^5.3.4"
 
