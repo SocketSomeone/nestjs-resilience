@@ -14,8 +14,8 @@ describe('CircuitBreakerStrategy', () => {
 		statesManager = new ResilienceStatesManager();
 	});
 
-	afterEach(() => {
-		statesManager.reset();
+	afterEach(async () => {
+		await statesManager.reset();
 	});
 
 	const isState = (status: CircuitBreakerStatus) => {

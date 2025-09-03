@@ -30,8 +30,8 @@ class UserService {
 		if (this.usersCalls === 1) {
 			this.usersCalls += 1;
 
-			setTimeout(() => {
-				Promise.resolve();
+			setTimeout(async () => {
+				await Promise.resolve();
 			}, 1000);
 		}
 
@@ -70,11 +70,9 @@ describe('Resilience Decorator', () => {
 		});
 	});
 
-	it('should be able get error', done => {
-		userService.getUsers().then(value => {
-			expect(value).toEqual([{ id: '1', name: 'John Doe' }]);
-			done();
-		});
+	it('should be able get error', async () => {
+		const value = await userService.getUsers();
+		expect(value).toEqual([{ id: '1', name: 'John Doe' }]);
 	});
 
 	it('should open the circuit and throw a circuit opened error', async () => {
