@@ -9,7 +9,7 @@
 		"prepublish:dev": "npm run build",
 		"publish:dev": "npm publish --access public --tag dev",
 		"prepare": "husky",
-		"format": "prettier --write \"src/**/*.ts\"",
+		"format": "prettier --write \"{src,apps,libs,test}/**/*.ts\"",
 		"lint": "eslint --ignore-pattern .gitignore \"{src,apps,libs,test}/**/*.ts\"",
 		"test": "jest",
 		"test:watch": "jest --watch",
