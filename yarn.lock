@@ -536,6 +536,11 @@
   resolved "https://registry.npmjs.org/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@cacheable/utils@^2.0.1":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@cacheable/utils/-/utils-2.0.2.tgz#5b28f9c653ca25ad9ab638ed4a98103afd7d88cf"
+  integrity sha512-JTFM3raFhVv8LH95T7YnZbf2YoE9wEtkPPStuRF9a6ExZ103hFvs+QyCuYJ6r0hA9wRtbzgZtwUCoDWxssZd4Q==
+
 "@commitlint/cli@19.8.1":
   version "19.8.1"
   resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-19.8.1.tgz#85f7d9f331344e1f0a2b9d8b24fd3695466e1158"
@@ -1372,10 +1377,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@keyv/serialize@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@keyv/serialize/-/serialize-1.1.0.tgz#08f5d89096110fdcf778e5337362e1cd5afad70a"
-  integrity sha512-RlDgexML7Z63Q8BSaqhXdCYNBy/JQnqYIwxofUrNLGCblOMHp+xux2Q8nLMLlPpgHQPoU0Do8Z6btCpRBEqZ8g==
+"@keyv/serialize@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@keyv/serialize/-/serialize-1.1.1.tgz#0c01dd3a3483882af7cf3878d4e71d505c81fc4a"
+  integrity sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA==
 
 "@lukeed/csprng@^1.0.0":
   version "1.1.0"
@@ -2461,12 +2466,13 @@ cacache@^19.0.1:
     tar "^7.4.3"
     unique-filename "^4.0.0"
 
-cache-manager@7.2.0:
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-7.2.0.tgz#2b29098e6d748e875bbccd148fc28639d9f5cdf8"
-  integrity sha512-GRv0Ji8Xgqtrg1Mmi4ygYpIt+SOApQNjJb5+rYIl+5y3u+tyBf+Csx79LL4wQjKLio63A6x1OpuBzhMzRv9jJg==
+cache-manager@7.2.2:
+  version "7.2.2"
+  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-7.2.2.tgz#d6f4cdca9eb93d725645e793af9d55d48c11355d"
+  integrity sha512-kI/pI0+ZX05CsEKH7Dt/mejgWK32R0h/is176IlmcZ6lJls9TdQ/xfYmrBdud7jh2yhlwa8WlBmCW1mjhcBf3g==
   dependencies:
-    keyv "^5.5.0"
+    "@cacheable/utils" "^2.0.1"
+    keyv "^5.5.2"
 
 call-bind-apply-helpers@^1.0.0, call-bind-apply-helpers@^1.0.1:
   version "1.0.1"
@@ -5118,12 +5124,12 @@ keyv@^4.5.4:
   dependencies:
     json-buffer "3.0.1"
 
-keyv@^5.5.0:
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/keyv/-/keyv-5.5.0.tgz#0ad5037484a7e01b033df7018033b5cc9ca7884f"
-  integrity sha512-QG7qR2tijh1ftOvClut4YKKg1iW6cx3GZsKoGyJPxHkGWK9oJhG9P3j5deP0QQOGDowBMVQFaP+Vm4NpGYvmIQ==
+keyv@^5.5.2:
+  version "5.5.2"
+  resolved "https://registry.yarnpkg.com/keyv/-/keyv-5.5.2.tgz#942348b882e08a27429688897eec4f735f75a978"
+  integrity sha512-TXcFHbmm/z7MGd1u9ASiCSfTS+ei6Z8B3a5JHzx3oPa/o7QzWVtPRpc4KGER5RR469IC+/nfg4U5YLIuDUua2g==
   dependencies:
-    "@keyv/serialize" "^1.1.0"
+    "@keyv/serialize" "^1.1.1"
 
 leven@^3.1.0:
   version "3.1.0"
