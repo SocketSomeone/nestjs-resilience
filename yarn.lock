@@ -536,10 +536,10 @@
   resolved "https://registry.npmjs.org/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cacheable/utils@^2.0.1":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@cacheable/utils/-/utils-2.0.2.tgz#5b28f9c653ca25ad9ab638ed4a98103afd7d88cf"
-  integrity sha512-JTFM3raFhVv8LH95T7YnZbf2YoE9wEtkPPStuRF9a6ExZ103hFvs+QyCuYJ6r0hA9wRtbzgZtwUCoDWxssZd4Q==
+"@cacheable/utils@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@cacheable/utils/-/utils-2.0.3.tgz#45d62f5dd3b481ef62677335bada2cbdb579148b"
+  integrity sha512-m7Rce68cMHlAUjvWBy9Ru1Nmw5gU0SjGGtQDdhpe6E0xnbcvrIY0Epy//JU1VYYBUTzrG9jvgmTauULGKzOkWA==
 
 "@commitlint/cli@20.1.0":
   version "20.1.0"
@@ -2464,13 +2464,13 @@ cacache@^19.0.1:
     tar "^7.4.3"
     unique-filename "^4.0.0"
 
-cache-manager@7.2.2:
-  version "7.2.2"
-  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-7.2.2.tgz#d6f4cdca9eb93d725645e793af9d55d48c11355d"
-  integrity sha512-kI/pI0+ZX05CsEKH7Dt/mejgWK32R0h/is176IlmcZ6lJls9TdQ/xfYmrBdud7jh2yhlwa8WlBmCW1mjhcBf3g==
+cache-manager@7.2.3:
+  version "7.2.3"
+  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-7.2.3.tgz#5f17c9dc92b4dde62eb02c1dd14104579efe9d21"
+  integrity sha512-Wz4kXp589cKCBatEIYA3JYvzdklPAi6l6vVWcGdUrn3OdIOGUbtaj8qKNdAJpYbHsBo9RWerXakAgf1uEuk6OQ==
   dependencies:
-    "@cacheable/utils" "^2.0.1"
-    keyv "^5.5.2"
+    "@cacheable/utils" "^2.0.3"
+    keyv "^5.5.3"
 
 call-bind-apply-helpers@^1.0.0, call-bind-apply-helpers@^1.0.1:
   version "1.0.1"
@@ -5122,10 +5122,10 @@ keyv@^4.5.4:
   dependencies:
     json-buffer "3.0.1"
 
-keyv@^5.5.2:
-  version "5.5.2"
-  resolved "https://registry.yarnpkg.com/keyv/-/keyv-5.5.2.tgz#942348b882e08a27429688897eec4f735f75a978"
-  integrity sha512-TXcFHbmm/z7MGd1u9ASiCSfTS+ei6Z8B3a5JHzx3oPa/o7QzWVtPRpc4KGER5RR469IC+/nfg4U5YLIuDUua2g==
+keyv@^5.5.3:
+  version "5.5.3"
+  resolved "https://registry.yarnpkg.com/keyv/-/keyv-5.5.3.tgz#db7b7f89b3e13ade5a8d0fe59d765aebb596e84b"
+  integrity sha512-h0Un1ieD+HUrzBH6dJXhod3ifSghk5Hw/2Y4/KHBziPlZecrFyE9YOTPU6eOs0V9pYl8gOs86fkr/KN8lUX39A==
   dependencies:
     "@keyv/serialize" "^1.1.1"
 
