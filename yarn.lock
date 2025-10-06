@@ -536,10 +536,12 @@
   resolved "https://registry.npmjs.org/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cacheable/utils@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@cacheable/utils/-/utils-2.0.3.tgz#45d62f5dd3b481ef62677335bada2cbdb579148b"
-  integrity sha512-m7Rce68cMHlAUjvWBy9Ru1Nmw5gU0SjGGtQDdhpe6E0xnbcvrIY0Epy//JU1VYYBUTzrG9jvgmTauULGKzOkWA==
+"@cacheable/utils@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@cacheable/utils/-/utils-2.1.0.tgz#fbef92c5bfe720eadbdbf516c5fa64dee794d35d"
+  integrity sha512-ZdxfOiaarMqMj+H7qwlt5EBKWaeGihSYVHdQv5lUsbn8MJJOTW82OIwirQ39U5tMZkNvy3bQE+ryzC+xTAb9/g==
+  dependencies:
+    keyv "^5.5.3"
 
 "@commitlint/cli@20.1.0":
   version "20.1.0"
@@ -2466,12 +2468,12 @@ cacache@^19.0.1:
     tar "^7.4.3"
     unique-filename "^4.0.0"
 
-cache-manager@7.2.3:
-  version "7.2.3"
-  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-7.2.3.tgz#5f17c9dc92b4dde62eb02c1dd14104579efe9d21"
-  integrity sha512-Wz4kXp589cKCBatEIYA3JYvzdklPAi6l6vVWcGdUrn3OdIOGUbtaj8qKNdAJpYbHsBo9RWerXakAgf1uEuk6OQ==
+cache-manager@7.2.4:
+  version "7.2.4"
+  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-7.2.4.tgz#4f7d4870f8be4869d8ef58068e6131997fe4c824"
+  integrity sha512-skmhkqXjPCBmrb70ctEx4zwFk7vb0RdFXlVGYWnFZ8pKvkzdFrFFKSJ1IaKduGfkryHOJvb7q2PkGmonmL+UGw==
   dependencies:
-    "@cacheable/utils" "^2.0.3"
+    "@cacheable/utils" "^2.1.0"
     keyv "^5.5.3"
 
 call-bind-apply-helpers@^1.0.0, call-bind-apply-helpers@^1.0.1:
