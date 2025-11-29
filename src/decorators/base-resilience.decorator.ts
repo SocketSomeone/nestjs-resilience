@@ -2,7 +2,7 @@ import { Strategy } from '../strategies';
 
 export type TypedHandlerDescriptor<T> = (
 	target: object,
-	propertyKey: string | symbol | undefined,
+	propertyKey: string | symbol,
 	descriptor: TypedPropertyDescriptor<(...args: any[]) => T>
 ) => TypedPropertyDescriptor<(...args: any[]) => T> | void;
 
