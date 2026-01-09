@@ -52,7 +52,7 @@
 		"Alexey Filippov <socket.someone@gmail.com>"
 	],
 	"dependencies": {
-		"cache-manager": "7.2.7",
+		"cache-manager": "7.2.8",
 		"tslib": "^2.8.1"
 	},
 	"devDependencies": {
