@@ -13,7 +13,7 @@ export class ResilienceEventBus {
 	private readonly emitter = new EventEmitter();
 
 	public on<K extends keyof ResilienceEvents>(event: K, fn: (args: ResilienceEvents[K]) => void) {
-		this.emitter.on(event, (...args) => fn.call(this, args));
+		this.emitter.on(event, (...args) => fn.call(this, args as ResilienceEvents[K]));
 		return this;
 	}
 

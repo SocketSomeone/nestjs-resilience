@@ -10,13 +10,13 @@ interface CommandMetadata {
 	baseClass: any;
 	strategies: Strategy[];
 	className: string;
-	propertyKey: string;
+	propertyKey: string | symbol;
 }
 
-const cache = new WeakMap<any, Record<string, any>>();
+const cache = new WeakMap<any, Record<string | symbol, any>>();
 
 export function BaseResilienceDecorator(baseClass: any, strategies: Strategy[]) {
-	return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
+	return (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) => {
 		const originalMethod = descriptor.value;
 
 		descriptor.value = function (...args: any[]) {

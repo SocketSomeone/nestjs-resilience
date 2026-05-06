@@ -15,9 +15,11 @@
 		"sourceMap": false,
 		"allowJs": false,
 		"outDir": "./dist",
-		"baseUrl": ".",
+		"rootDir": "./src",
 		"forceConsistentCasingInFileNames": true,
-		"strictPropertyInitialization": false
+		"strictPropertyInitialization": false,
+		"strictNullChecks": false,
+		"types": ["node", "jest"]
 	},
 	"exclude": [
 		"node_modules"
