@@ -18,24 +18,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Install Node v22
+      - name: Install Node
         uses: actions/setup-node@v6
         with:
-          node-version: 22
-          cache: yarn
-          cache-dependency-path: yarn.lock
+          node-version: lts/*
+          cache: npm
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm ci
 
       - name: Run ESlint
-        run: yarn lint
+        run: npm run lint
 
       - name: Run Build
-        run: yarn build
+        run: npm run build
 
       - name: Run Tests
-        run: yarn test:ci
+        run: npm run test:ci
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v6
