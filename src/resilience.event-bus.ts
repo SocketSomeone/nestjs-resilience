@@ -1,4 +1,5 @@
 import { EventEmitter } from 'events';
+
 import { ResilienceEvents } from './interfaces';
 
 export class ResilienceEventBus {

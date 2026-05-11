@@ -1,7 +1,8 @@
-import { Strategy } from './base.strategy';
-import { Backoff, FixedBackoff } from '../helpers';
 import { Observable, retry, timer } from 'rxjs';
+
+import { Backoff, FixedBackoff } from '../helpers';
 import { RetryOptions } from '../interfaces';
+import { Strategy } from './base.strategy';
 
 export class RetryStrategy extends Strategy<RetryOptions> {
 	private static readonly DEFAULT_OPTIONS: RetryOptions = {

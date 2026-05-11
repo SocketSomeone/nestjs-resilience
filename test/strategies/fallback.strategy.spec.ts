@@ -1,4 +1,5 @@
 import { map, of } from 'rxjs';
+
 import { FallbackStrategy } from '../../src';
 
 describe('FallbackStrategy', () => {

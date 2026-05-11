@@ -1,7 +1,8 @@
-import { Strategy } from '../strategies';
 import { Observable } from 'rxjs';
-import { ResilienceObservableCommand } from '../commands';
+
 import { BaseResilienceDecorator, TypedHandlerDescriptor } from './base-resilience.decorator';
+import { ResilienceObservableCommand } from '../commands';
+import { Strategy } from '../strategies';
 
 export const UseResilienceObservable = (
 	...strategies: Strategy[]

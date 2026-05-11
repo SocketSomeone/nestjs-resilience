@@ -1,5 +1,6 @@
-import { FixedBackoff, RetryStrategy } from '../../src';
 import { of, tap } from 'rxjs';
+
+import { FixedBackoff, RetryStrategy } from '../../src';
 
 describe('Retry Strategy', () => {
 	const strategy = new RetryStrategy({

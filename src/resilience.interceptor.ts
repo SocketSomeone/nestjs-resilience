@@ -1,7 +1,8 @@
-import { Strategy } from './strategies';
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor, Type } from '@nestjs/common';
 import { Observable } from 'rxjs';
+
 import { ResilienceObservableCommand } from './commands';
+import { Strategy } from './strategies';
 
 export function ResilienceInterceptor<T>(...strategies: Strategy[]): Type<NestInterceptor> {
 	class InterceptorCommand extends ResilienceObservableCommand {

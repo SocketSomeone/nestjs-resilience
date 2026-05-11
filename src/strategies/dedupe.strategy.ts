@@ -1,6 +1,7 @@
-import { Strategy } from './base.strategy';
-import { DedupeOptions } from '../interfaces';
 import { Observable, Subject, tap } from 'rxjs';
+
+import { DedupeOptions } from '../interfaces';
+import { Strategy } from './base.strategy';
 import { BaseCommand } from '../commands';
 
 export class DedupeStrategy extends Strategy<DedupeOptions> {

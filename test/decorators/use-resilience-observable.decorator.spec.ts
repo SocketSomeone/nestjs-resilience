@@ -1,5 +1,6 @@
-import { FixedBackoff, RetryStrategy, TimeoutStrategy, UseResilienceObservable } from '../../src';
 import { of, tap, timeout } from 'rxjs';
+
+import { FixedBackoff, RetryStrategy, TimeoutStrategy, UseResilienceObservable } from '../../src';
 
 const timeoutStrategy = new TimeoutStrategy(100);
 const retryStrategy = new RetryStrategy({

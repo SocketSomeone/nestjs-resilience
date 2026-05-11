@@ -1,12 +1,13 @@
-import { Strategy } from './base.strategy';
-import { CircuitBreakerStatus } from '../enum';
-import { CircuitBreakerOptions } from '../interfaces';
 import { catchError, finalize, from, Observable, of, switchMap, tap, throwError } from 'rxjs';
+
+import { ResilienceStatesManager } from '../resilience.states-manager';
 import { CircuitOpenedException } from '../exceptions';
+import { CircuitBreakerOptions } from '../interfaces';
 import { TimeoutStrategy } from './timeout.strategy';
 import { CacheStrategy } from './cache.strategy';
+import { CircuitBreakerStatus } from '../enum';
+import { Strategy } from './base.strategy';
 import { BaseCommand } from '../commands';
-import { ResilienceStatesManager } from '../resilience.states-manager';
 
 interface CircuitBreakerState {
 	status: CircuitBreakerStatus;

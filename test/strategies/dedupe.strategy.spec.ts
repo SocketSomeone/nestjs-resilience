@@ -1,6 +1,7 @@
-import { DedupeStrategy } from '../../src';
 import { lastValueFrom, map, of, switchMap, throwError } from 'rxjs';
 import { delay } from 'rxjs/operators';
+
+import { DedupeStrategy } from '../../src';
 
 describe('DedupeStrategy', () => {
 	let strategy: DedupeStrategy;

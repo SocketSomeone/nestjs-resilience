@@ -1,7 +1,8 @@
-import { Strategy } from './base.strategy';
 import { finalize, Observable, Subject, throwError } from 'rxjs';
+
 import { BulkheadRejectedException } from '../exceptions';
 import { BulkheadOptions } from '../interfaces';
+import { Strategy } from './base.strategy';
 
 export class BulkheadStrategy extends Strategy<BulkheadOptions> {
 	private static readonly DEFAULT_OPTIONS: BulkheadOptions = {

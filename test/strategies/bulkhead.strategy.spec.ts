@@ -1,5 +1,6 @@
-import { BulkheadOptions, BulkheadRejectedException, BulkheadStrategy } from '../../src';
 import { of, take } from 'rxjs';
+
+import { BulkheadOptions, BulkheadRejectedException, BulkheadStrategy } from '../../src';
 
 describe('Bulkhead Strategy', () => {
 	let bulkhead: BulkheadStrategy;

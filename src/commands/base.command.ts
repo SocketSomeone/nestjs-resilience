@@ -1,8 +1,9 @@
 import { Logger } from '@nestjs/common';
-import { Strategy } from '../strategies';
+
+import { CircuitOpenedException, TimeoutException } from '../exceptions';
 import { ResilienceEventBus } from '../resilience.event-bus';
 import { ResilienceEventType } from '../enum';
-import { CircuitOpenedException, TimeoutException } from '../exceptions';
+import { Strategy } from '../strategies';
 
 export type ParametersOfRun<T extends BaseCommand> = Parameters<T['run']>;
 export type ReturnTypeOfRun<T extends BaseCommand> = ReturnType<T['run']>;

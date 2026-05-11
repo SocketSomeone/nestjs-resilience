@@ -1,5 +1,6 @@
 import { Cache, createCache } from 'cache-manager';
 import { Inject, Optional } from '@nestjs/common';
+
 import { MODULE_OPTIONS_TOKEN } from './resilience.module-definition';
 import { ResilienceModuleOptions } from './interfaces';
 

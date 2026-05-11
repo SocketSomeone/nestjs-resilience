@@ -5,6 +5,6 @@ export * from './circuit-breaker.strategy';
 export * from './dedupe.strategy';
 export * from './fallback.strategy';
 export * from './health-check.strategy';
-export * from './throttle.strategy';
 export * from './retry.strategy';
+export * from './throttle.strategy';
 export * from './timeout.strategy';

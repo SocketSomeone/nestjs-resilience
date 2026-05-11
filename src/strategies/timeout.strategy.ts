@@ -1,7 +1,8 @@
-import { Strategy } from './base.strategy';
 import { Observable, throwError, timeout } from 'rxjs';
+
 import { TimeoutException } from '../exceptions';
 import { TimeoutOptions } from '../interfaces';
+import { Strategy } from './base.strategy';
 
 export class TimeoutStrategy extends Strategy<TimeoutOptions> {
 	private static readonly DEFAULT_OPTIONS: TimeoutOptions = 1000;

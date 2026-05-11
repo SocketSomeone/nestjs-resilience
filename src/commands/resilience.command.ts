@@ -1,5 +1,6 @@
-import { BaseCommand, ReturnTypeOfRun } from './base.command';
 import { catchError, defer, lastValueFrom, Observable, tap } from 'rxjs';
+
+import { BaseCommand, ReturnTypeOfRun } from './base.command';
 import { ResilienceEventType } from '../enum';
 
 export abstract class ResilienceCommand extends BaseCommand {

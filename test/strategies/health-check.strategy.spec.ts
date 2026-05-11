@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs';
+
 import { HealthCheckFailedException, HealthCheckStrategy } from '../../src';
 
 describe('HealthCheckStrategy', () => {

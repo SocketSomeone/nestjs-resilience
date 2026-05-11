@@ -1,5 +1,6 @@
-import { timer } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { timer } from 'rxjs';
+
 import { TimeoutException, TimeoutStrategy } from '../../src';
 
 describe('TimeoutStrategy', () => {

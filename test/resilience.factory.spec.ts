@@ -1,3 +1,5 @@
+import { Type } from '@nestjs/common';
+
 import {
 	BulkheadStrategy,
 	CacheStrategy,
@@ -11,7 +13,6 @@ import {
 	ThrottleStrategy,
 	TimeoutStrategy
 } from '../src';
-import { Type } from '@nestjs/common';
 
 describe('Resilience Factory', () => {
 	const factory = ResilienceFactory;

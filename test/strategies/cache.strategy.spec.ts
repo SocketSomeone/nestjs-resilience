@@ -1,9 +1,10 @@
-import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { of } from 'rxjs';
+
 import { CacheStrategy, ResilienceStatesManager } from '../../src';
 
 describe('CacheStrategy', () => {
-	let strategy: CacheStrategy, statesManager: ResilienceStatesManager;
+	let statesManager: ResilienceStatesManager, strategy: CacheStrategy;
 
 	beforeEach(() => {
 		strategy = new CacheStrategy();

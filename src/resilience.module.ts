@@ -1,9 +1,10 @@
 import { Global, Module } from '@nestjs/common';
-import { ResilienceFactory } from './resilience.factory';
-import { ResilienceService } from './resilience.service';
-import { ResilienceEventBus } from './resilience.event-bus';
+
 import { ConfigurableModuleClass } from './resilience.module-definition';
 import { ResilienceStatesManager } from './resilience.states-manager';
+import { ResilienceEventBus } from './resilience.event-bus';
+import { ResilienceFactory } from './resilience.factory';
+import { ResilienceService } from './resilience.service';
 
 const eventBusProvider = {
 	provide: ResilienceEventBus,

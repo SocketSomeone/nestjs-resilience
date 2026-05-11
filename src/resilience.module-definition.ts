@@ -1,4 +1,5 @@
 import { ConfigurableModuleBuilder } from '@nestjs/common';
+
 import { ResilienceModuleOptions } from './interfaces';
 
 export const { ConfigurableModuleClass, MODULE_OPTIONS_TOKEN } =

@@ -1,5 +1,6 @@
-import { Observable } from 'rxjs';
 import { Logger } from '@nestjs/common';
+import { Observable } from 'rxjs';
+
 import { BaseCommand } from '../commands';
 
 export abstract class Strategy<Options = any> {

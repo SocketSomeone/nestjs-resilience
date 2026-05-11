@@ -1,8 +1,9 @@
-import { CircuitBreakerStatus, CircuitBreakerStrategy, ResilienceStatesManager } from '../../src';
 import { of, throwError } from 'rxjs';
 
+import { CircuitBreakerStatus, CircuitBreakerStrategy, ResilienceStatesManager } from '../../src';
+
 describe('CircuitBreakerStrategy', () => {
-	let strategy: CircuitBreakerStrategy, statesManager: ResilienceStatesManager;
+	let statesManager: ResilienceStatesManager, strategy: CircuitBreakerStrategy;
 
 	beforeEach(() => {
 		strategy = new CircuitBreakerStrategy({

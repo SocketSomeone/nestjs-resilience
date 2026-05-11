@@ -1,6 +1,7 @@
-import { ResilienceObservableCommand } from '../../src';
 import { of, tap } from 'rxjs';
+
 import { retryStrategy } from './fixtures/strategy.fixture';
+import { ResilienceObservableCommand } from '../../src';
 
 class TestObservableCommand extends ResilienceObservableCommand {
 	private count = 0;

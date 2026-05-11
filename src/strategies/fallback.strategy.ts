@@ -1,6 +1,7 @@
-import { Strategy } from './base.strategy';
 import { catchError, Observable, of } from 'rxjs';
+
 import { FallbackOptions } from '../interfaces';
+import { Strategy } from './base.strategy';
 import { BaseCommand } from '../commands';
 
 export class FallbackStrategy extends Strategy<FallbackOptions> {

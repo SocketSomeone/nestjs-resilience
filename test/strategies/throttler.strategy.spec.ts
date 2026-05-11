@@ -1,4 +1,5 @@
 import { Observable, of } from 'rxjs';
+
 import { ThrottleOptions, ThrottlerException, ThrottleStrategy } from '../../src';
 
 describe('ThrottlerStrategy', () => {

@@ -1,5 +1,6 @@
-import { Backoff } from '../helpers';
 import { Type } from '@nestjs/common';
+
+import { Backoff } from '../helpers';
 
 export interface RetryOptions {
 	maxRetries?: number;
