@@ -73,7 +73,7 @@
 		"globals": "^17.0.0",
 		"husky": "9.1.7",
 		"jest": "^30.0.0",
-		"lint-staged": "17.0.7",
+		"lint-staged": "17.0.8",
 		"prettier": "3.8.4",
 		"reflect-metadata": "0.2.2",
 		"release-it": "20.2.0",
