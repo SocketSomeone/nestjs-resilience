@@ -1,8 +1,8 @@
 import { Cache, createCache } from 'cache-manager';
 import { Inject, Optional } from '@nestjs/common';
 
-import { MODULE_OPTIONS_TOKEN } from './resilience.module-definition';
-import { ResilienceModuleOptions } from './interfaces';
+import { MODULE_OPTIONS_TOKEN } from './resilience.module-definition.js';
+import { ResilienceModuleOptions } from './interfaces/index.js';
 
 export class ResilienceStatesManager {
 	private static readonly PREFIX = 'nestjs-resilience/';
@@ -39,7 +39,7 @@ export class ResilienceStatesManager {
 	}
 
 	public async get<T>(key: string): Promise<T> {
-		return this.cache.get(ResilienceStatesManager.PREFIX + key);
+		return (await this.cache.get<T>(ResilienceStatesManager.PREFIX + key))!;
 	}
 
 	public async reset(): Promise<boolean> {

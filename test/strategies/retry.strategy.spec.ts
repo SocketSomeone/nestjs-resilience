@@ -1,6 +1,6 @@
 import { of, tap } from 'rxjs';
 
-import { FixedBackoff, RetryStrategy } from '../../src';
+import { FixedBackoff, RetryStrategy } from '../../src/index.js';
 
 describe('Retry Strategy', () => {
 	const strategy = new RetryStrategy({
@@ -27,28 +27,32 @@ describe('Retry Strategy', () => {
 		count = 0;
 	});
 
-	it('should exceed retry limit', done => {
+	it('should exceed retry limit', () => {
 		const clone = strategy.clone();
 		clone.updateOption('maxRetries', 2);
 
-		clone.process(observable).subscribe({
-			error: err => {
-				expect(err.message).toBe('Test');
-				expect(count).toBe(2);
-				done();
-			}
+		return new Promise<void>(resolve => {
+			clone.process(observable).subscribe({
+				error: err => {
+					expect(err.message).toBe('Test');
+					expect(count).toBe(2);
+					resolve();
+				}
+			});
 		});
 	});
 
-	it('should be able to retry an observable', done => {
-		strategy.process(observable).subscribe({
-			next: value => {
-				expect(value).toBe(1);
-				expect(count).toBe(3);
-			},
-			complete: () => {
-				done();
-			}
+	it('should be able to retry an observable', () => {
+		return new Promise<void>(resolve => {
+			strategy.process(observable).subscribe({
+				next: value => {
+					expect(value).toBe(1);
+					expect(count).toBe(3);
+				},
+				complete: () => {
+					resolve();
+				}
+			});
 		});
 	});
 });

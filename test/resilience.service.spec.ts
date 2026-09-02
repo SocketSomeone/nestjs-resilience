@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 
-import { ResilienceCommand, ResilienceModule, ResilienceService } from '../src';
+import { ResilienceCommand, ResilienceModule, ResilienceService } from '../src/index.js';
 
 interface User {
 	id: string;

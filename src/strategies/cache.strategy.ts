@@ -1,9 +1,9 @@
 import { from, Observable, of, switchMap, tap } from 'rxjs';
 
-import { ResilienceStatesManager } from '../resilience.states-manager';
-import { CacheOptions } from '../interfaces';
-import { Strategy } from './base.strategy';
-import { BaseCommand } from '../commands';
+import { ResilienceStatesManager } from '../resilience.states-manager.js';
+import { CacheOptions } from '../interfaces/index.js';
+import { BaseCommand } from '../commands/index.js';
+import { Strategy } from './base.strategy.js';
 
 export class CacheStrategy extends Strategy<CacheOptions> {
 	private static readonly DEFAULT_TTL = 30 * 1000;

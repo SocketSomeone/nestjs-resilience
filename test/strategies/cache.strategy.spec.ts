@@ -1,24 +1,26 @@
 import { delay } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-import { CacheStrategy, ResilienceStatesManager } from '../../src';
+import { CacheStrategy, ResilienceStatesManager } from '../../src/index.js';
 
 describe('CacheStrategy', () => {
-	let statesManager: ResilienceStatesManager, strategy: CacheStrategy;
+	let strategy: CacheStrategy;
 
 	beforeEach(() => {
 		strategy = new CacheStrategy();
-		statesManager = new ResilienceStatesManager();
+		new ResilienceStatesManager();
 	});
 
-	it('should cache the new value', done => {
+	it('should cache the new value', () => {
 		const newValue = 'new value';
 
-		const observable = strategy.process(of(newValue).pipe(delay(100)), null, 'test');
+		const observable = strategy.process(of(newValue).pipe(delay(100)), null!, 'test');
 
-		observable.subscribe(value => {
-			expect(value).toEqual(newValue);
-			done();
+		return new Promise<void>(resolve => {
+			observable.subscribe(value => {
+				expect(value).toEqual(newValue);
+				resolve();
+			});
 		});
 	});
 });

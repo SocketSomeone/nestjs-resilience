@@ -4,7 +4,7 @@ import {
 	RetryStrategy,
 	TimeoutStrategy,
 	UseResilience
-} from '../../src';
+} from '../../src/index.js';
 
 const timeoutStrategy = new TimeoutStrategy(100);
 const retryStrategy = new RetryStrategy({
@@ -56,9 +56,8 @@ class UserService {
 describe('Resilience Decorator', () => {
 	const userService = new UserService();
 
-	beforeEach(async () => {
-		await jest.advanceTimersByTimeAsync(10000);
-		jest.restoreAllMocks();
+	beforeEach(() => {
+		vi.restoreAllMocks();
 	});
 
 	it('should be able to execute a command', async () => {
@@ -76,7 +75,7 @@ describe('Resilience Decorator', () => {
 	});
 
 	it('should open the circuit and throw a circuit opened error', async () => {
-		jest.spyOn(userService, 'queryUser').mockRejectedValue(new Error('err'));
+		vi.spyOn(userService, 'queryUser').mockRejectedValue(new Error('err'));
 
 		// Execute multiple calls to trigger circuit opening
 		await expect(async () => await userService.getUserCircuitStrategy('1')).rejects.toThrow(

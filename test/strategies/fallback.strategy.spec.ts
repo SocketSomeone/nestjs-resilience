@@ -1,10 +1,10 @@
 import { map, of } from 'rxjs';
 
-import { FallbackStrategy } from '../../src';
+import { FallbackStrategy } from '../../src/index.js';
 
 describe('FallbackStrategy', () => {
 	const fallbackValue = 'fallback value';
-	const fallbackFn = jest.fn(() => fallbackValue);
+	const fallbackFn = vi.fn<() => string>(() => fallbackValue);
 
 	it('should process observable and return fallback value on error', () => {
 		// Arrange
@@ -18,7 +18,7 @@ describe('FallbackStrategy', () => {
 					throw new Error('error');
 				})
 			),
-			null
+			null!
 		);
 
 		// Assert

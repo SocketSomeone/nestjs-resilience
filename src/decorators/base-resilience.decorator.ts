@@ -1,4 +1,4 @@
-import { Strategy } from '../strategies';
+import { Strategy } from '../strategies/index.js';
 
 export type TypedHandlerDescriptor<T> = (
 	target: object,

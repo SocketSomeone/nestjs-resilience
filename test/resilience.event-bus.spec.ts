@@ -1,6 +1,6 @@
-import { ResilienceEventBus, ResilienceEventType } from '../src';
+import { ResilienceEventBus, ResilienceEventType } from '../src/index.js';
 
-jest.useFakeTimers();
+vi.useFakeTimers();
 
 describe('ResilienceEventBus', () => {
 	const resilienceEventBus = ResilienceEventBus.getInstance();
@@ -20,9 +20,9 @@ describe('ResilienceEventBus', () => {
 
 	for (const event of events) {
 		it(`should be able to emit ${event}`, () => {
-			const callback = jest.fn();
+			const callback = vi.fn<() => void>();
 			resilienceEventBus.on(event, callback);
-			resilienceEventBus.emit(event, null);
+			resilienceEventBus.emit(event, null!);
 			expect(callback).toHaveBeenCalledWith([null]);
 		});
 	}

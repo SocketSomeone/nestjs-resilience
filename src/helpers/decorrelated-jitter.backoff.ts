@@ -1,4 +1,4 @@
-import { Backoff } from './base.backoff';
+import { Backoff } from './base.backoff.js';
 
 export class DecorrelatedJitterBackoff extends Backoff {
 	private static readonly RP_SCALING_FACTOR = 1 / 1.4;

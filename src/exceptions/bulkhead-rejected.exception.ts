@@ -1,4 +1,4 @@
-import { ResilienceRuntimeException } from './resilience-runtime.exception';
+import { ResilienceRuntimeException } from './resilience-runtime.exception.js';
 
 export class BulkheadRejectedException extends ResilienceRuntimeException {
 	public constructor(executionSlots: number, queueSlots: number) {

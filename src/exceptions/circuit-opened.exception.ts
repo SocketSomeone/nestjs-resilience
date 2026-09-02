@@ -1,4 +1,4 @@
-import { ResilienceRuntimeException } from './resilience-runtime.exception';
+import { ResilienceRuntimeException } from './resilience-runtime.exception.js';
 
 export class CircuitOpenedException extends ResilienceRuntimeException {
 	public constructor() {

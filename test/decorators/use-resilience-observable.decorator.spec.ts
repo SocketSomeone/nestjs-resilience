@@ -1,6 +1,11 @@
 import { of, tap, timeout } from 'rxjs';
 
-import { FixedBackoff, RetryStrategy, TimeoutStrategy, UseResilienceObservable } from '../../src';
+import {
+	FixedBackoff,
+	RetryStrategy,
+	TimeoutStrategy,
+	UseResilienceObservable
+} from '../../src/index.js';
 
 const timeoutStrategy = new TimeoutStrategy(100);
 const retryStrategy = new RetryStrategy({
@@ -8,7 +13,7 @@ const retryStrategy = new RetryStrategy({
 	backoff: FixedBackoff
 });
 
-const spyOnRetry = jest.spyOn(FixedBackoff.prototype, 'getGenerator');
+vi.spyOn(FixedBackoff.prototype, 'getGenerator');
 
 class UserService {
 	@UseResilienceObservable(timeoutStrategy)
@@ -40,28 +45,32 @@ class UserService {
 describe('Resilience Observable Decorator', () => {
 	const userService = new UserService();
 
-	it('should be able to execute a command', done => {
-		userService.getUser('1').subscribe({
-			next: value => {
-				expect(value).toEqual({
-					id: '1',
-					name: 'John Doe'
-				});
-			},
-			complete: () => {
-				done();
-			}
+	it('should be able to execute a command', () => {
+		return new Promise<void>(resolve => {
+			userService.getUser('1').subscribe({
+				next: value => {
+					expect(value).toEqual({
+						id: '1',
+						name: 'John Doe'
+					});
+				},
+				complete: () => {
+					resolve();
+				}
+			});
 		});
 	});
 
-	it('should be able get error', done => {
-		userService.getUsers().subscribe({
-			next: value => {
-				expect(value).toEqual([{ id: '1', name: 'John Doe' }]);
-			},
-			complete: () => {
-				done();
-			}
+	it('should be able get error', () => {
+		return new Promise<void>(resolve => {
+			userService.getUsers().subscribe({
+				next: value => {
+					expect(value).toEqual([{ id: '1', name: 'John Doe' }]);
+				},
+				complete: () => {
+					resolve();
+				}
+			});
 		});
 	});
 });

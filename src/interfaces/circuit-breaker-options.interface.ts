@@ -1,6 +1,6 @@
-import { FallbackOptions } from './fallback-options.interface';
-import { TimeoutOptions } from './timeout-options.interface';
-import { CacheOptions } from './cache-options.interface';
+import { FallbackOptions } from './fallback-options.interface.js';
+import { TimeoutOptions } from './timeout-options.interface.js';
+import { CacheOptions } from './cache-options.interface.js';
 
 export interface CircuitBreakerOptions {
 	requestVolumeThreshold?: number;

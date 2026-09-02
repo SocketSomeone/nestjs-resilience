@@ -1,2 +1,2 @@
-export * from './random.util';
-export * from './sleep.util';
+export * from './random.util.js';
+export * from './sleep.util.js';
