@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 
-import { ResilienceEvents } from './interfaces';
+import { ResilienceEvents } from './interfaces/index.js';
 
 export class ResilienceEventBus {
 	private static readonly instance = new ResilienceEventBus();

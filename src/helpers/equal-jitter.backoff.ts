@@ -1,5 +1,5 @@
-import { Backoff } from './base.backoff';
-import { Random } from '../utils';
+import { Backoff } from './base.backoff.js';
+import { Random } from '../utils/index.js';
 
 export class EqualJitterBackoff extends Backoff {
 	public *getGenerator(maxRetries: number): Generator<number, void, number> {

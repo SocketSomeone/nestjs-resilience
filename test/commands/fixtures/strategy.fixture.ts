@@ -1,4 +1,4 @@
-import { FixedBackoff, RetryStrategy } from '../../../src';
+import { FixedBackoff, RetryStrategy } from '../../../src/index.js';
 
 export const retryStrategy = new RetryStrategy({
 	maxRetries: 5,

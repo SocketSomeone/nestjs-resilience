@@ -1,6 +1,10 @@
 import { of, throwError } from 'rxjs';
 
-import { CircuitBreakerStatus, CircuitBreakerStrategy, ResilienceStatesManager } from '../../src';
+import {
+	CircuitBreakerStatus,
+	CircuitBreakerStrategy,
+	ResilienceStatesManager
+} from '../../src/index.js';
 
 describe('CircuitBreakerStrategy', () => {
 	let statesManager: ResilienceStatesManager, strategy: CircuitBreakerStrategy;
@@ -28,7 +32,6 @@ describe('CircuitBreakerStrategy', () => {
 	};
 
 	const isOpen = () => isState(CircuitBreakerStatus.Open);
-	const isHalfOpen = () => isState(CircuitBreakerStatus.HalfOpen);
 	const isClosed = () => isState(CircuitBreakerStatus.Closed);
 
 	it('should be able to create an instance', () => {
@@ -38,26 +41,26 @@ describe('CircuitBreakerStrategy', () => {
 	it('should short-circuit', async () => {
 		const observable = throwError(new Error('test'));
 
-		await expect(strategy.process(observable, null).toPromise()).resolves.toEqual('fallback');
+		await expect(strategy.process(observable, null!).toPromise()).resolves.toEqual('fallback');
 		await expect(isOpen()).resolves.toBeTruthy();
 	});
 
 	it('should reset after sleepWindowInMilliseconds', async () => {
 		const observable = throwError(new Error('test'));
 
-		await expect(strategy.process(observable, null).toPromise()).resolves.toEqual('fallback');
+		await expect(strategy.process(observable, null!).toPromise()).resolves.toEqual('fallback');
 		await expect(isOpen()).resolves.toBeTruthy();
 
 		await new Promise(resolve => setTimeout(resolve, 1000));
 
-		await expect(strategy.process(of(1), null).toPromise()).resolves.toEqual(1);
+		await expect(strategy.process(of(1), null!).toPromise()).resolves.toEqual(1);
 		await expect(isClosed()).resolves.toBeTruthy();
 	});
 
 	it('should not short-circuit', async () => {
 		const observable = of(1);
 
-		await expect(strategy.process(observable, null).toPromise()).resolves.toEqual(1);
+		await expect(strategy.process(observable, null!).toPromise()).resolves.toEqual(1);
 		await expect(isClosed()).resolves.toBeTruthy();
 	});
 });

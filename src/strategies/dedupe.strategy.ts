@@ -1,8 +1,8 @@
 import { Observable, Subject, tap } from 'rxjs';
 
-import { DedupeOptions } from '../interfaces';
-import { Strategy } from './base.strategy';
-import { BaseCommand } from '../commands';
+import { DedupeOptions } from '../interfaces/index.js';
+import { BaseCommand } from '../commands/index.js';
+import { Strategy } from './base.strategy.js';
 
 export class DedupeStrategy extends Strategy<DedupeOptions> {
 	private static readonly DEFAULT_OPTIONS: DedupeOptions = {
@@ -21,10 +21,10 @@ export class DedupeStrategy extends Strategy<DedupeOptions> {
 		command: BaseCommand,
 		...args: any[]
 	): Observable<T> {
-		const key = this.options.keyFn(args, command);
+		const key = this.options.keyFn!(args, command);
 
 		if (this.activeCommands.has(key)) {
-			return this.activeCommands.get(key).asObservable();
+			return this.activeCommands.get(key)!.asObservable();
 		}
 
 		const result = observable;

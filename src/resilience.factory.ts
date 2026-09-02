@@ -11,7 +11,7 @@ import {
 	Strategy,
 	ThrottleStrategy,
 	TimeoutStrategy
-} from './strategies';
+} from './strategies/index.js';
 import {
 	BulkheadOptions,
 	CacheOptions,
@@ -22,7 +22,7 @@ import {
 	RetryOptions,
 	ThrottleOptions,
 	TimeoutOptions
-} from './interfaces';
+} from './interfaces/index.js';
 
 @Injectable()
 export class ResilienceFactory {

@@ -12,7 +12,7 @@ import {
 	Strategy,
 	ThrottleStrategy,
 	TimeoutStrategy
-} from '../src';
+} from '../src/index.js';
 
 describe('Resilience Factory', () => {
 	const factory = ResilienceFactory;

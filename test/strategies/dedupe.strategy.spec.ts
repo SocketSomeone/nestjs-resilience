@@ -1,11 +1,11 @@
 import { lastValueFrom, map, of, switchMap, throwError } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
-import { DedupeStrategy } from '../../src';
+import { DedupeStrategy } from '../../src/index.js';
 
 describe('DedupeStrategy', () => {
 	let strategy: DedupeStrategy;
-	const command = null;
+	const command = null!;
 
 	beforeEach(() => {
 		strategy = new DedupeStrategy();

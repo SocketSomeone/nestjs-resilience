@@ -1,8 +1,8 @@
 import { Observable, throwError } from 'rxjs';
 
-import { HealthCheckFailedException } from '../exceptions';
-import { HealthCheckOptions } from '../interfaces';
-import { Strategy } from './base.strategy';
+import { HealthCheckFailedException } from '../exceptions/index.js';
+import { HealthCheckOptions } from '../interfaces/index.js';
+import { Strategy } from './base.strategy.js';
 
 export class HealthCheckStrategy extends Strategy<HealthCheckOptions> {
 	public constructor(options: HealthCheckOptions) {

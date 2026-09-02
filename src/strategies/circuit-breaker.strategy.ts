@@ -1,13 +1,13 @@
 import { catchError, finalize, from, Observable, of, switchMap, tap, throwError } from 'rxjs';
 
-import { ResilienceStatesManager } from '../resilience.states-manager';
-import { CircuitOpenedException } from '../exceptions';
-import { CircuitBreakerOptions } from '../interfaces';
-import { TimeoutStrategy } from './timeout.strategy';
-import { CacheStrategy } from './cache.strategy';
-import { CircuitBreakerStatus } from '../enum';
-import { Strategy } from './base.strategy';
-import { BaseCommand } from '../commands';
+import { ResilienceStatesManager } from '../resilience.states-manager.js';
+import { CircuitOpenedException } from '../exceptions/index.js';
+import { CircuitBreakerOptions } from '../interfaces/index.js';
+import { TimeoutStrategy } from './timeout.strategy.js';
+import { CircuitBreakerStatus } from '../enum/index.js';
+import { CacheStrategy } from './cache.strategy.js';
+import { BaseCommand } from '../commands/index.js';
+import { Strategy } from './base.strategy.js';
 
 interface CircuitBreakerState {
 	status: CircuitBreakerStatus;
@@ -56,12 +56,12 @@ export class CircuitBreakerStrategy extends Strategy<CircuitBreakerOptions> {
 				const isOpen = () => state.status === CircuitBreakerStatus.Open;
 				const isHalfOpen = () => state.status === CircuitBreakerStatus.HalfOpen;
 				const failuresPercentage = () =>
-					(state.failuresCount / this.options.requestVolumeThreshold) * 100;
+					(state.failuresCount / this.options.requestVolumeThreshold!) * 100;
 
 				if (this.options.rollingWindowInMilliseconds) {
 					const rollingWindowHasExpired = () =>
 						Date.now() >=
-						state.lastRequestTimeMs + this.options.rollingWindowInMilliseconds;
+						state.lastRequestTimeMs + this.options.rollingWindowInMilliseconds!;
 					if (rollingWindowHasExpired()) {
 						state.failuresCount = 0;
 						state.succeedsCount = 0;
@@ -72,7 +72,7 @@ export class CircuitBreakerStrategy extends Strategy<CircuitBreakerOptions> {
 				state.lastRequestTimeMs = Date.now();
 
 				if (isOpen()) {
-					if (state.openedAt + this.options.sleepWindowInMilliseconds > Date.now()) {
+					if (state.openedAt + this.options.sleepWindowInMilliseconds! > Date.now()) {
 						return this.getFallbackOrThrowError(new CircuitOpenedException());
 					}
 
@@ -94,7 +94,7 @@ export class CircuitBreakerStrategy extends Strategy<CircuitBreakerOptions> {
 					finalize(async () => {
 						if (
 							state.succeedsCount + state.failuresCount >=
-							this.options.requestVolumeThreshold
+							this.options.requestVolumeThreshold!
 						) {
 							state.succeedsCount = 0;
 							state.failuresCount = 0;
@@ -111,9 +111,9 @@ export class CircuitBreakerStrategy extends Strategy<CircuitBreakerOptions> {
 
 						if (
 							state.succeedsCount + state.failuresCount >=
-							this.options.requestVolumeThreshold
+							this.options.requestVolumeThreshold!
 						) {
-							if (failuresPercentage() >= this.options.errorThresholdPercentage) {
+							if (failuresPercentage() >= this.options.errorThresholdPercentage!) {
 								state.status = CircuitBreakerStatus.Open;
 								state.openedAt = Date.now();
 							}

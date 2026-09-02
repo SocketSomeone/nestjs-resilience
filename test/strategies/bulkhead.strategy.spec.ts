@@ -1,6 +1,6 @@
 import { of, take } from 'rxjs';
 
-import { BulkheadOptions, BulkheadRejectedException, BulkheadStrategy } from '../../src';
+import { BulkheadOptions, BulkheadRejectedException, BulkheadStrategy } from '../../src/index.js';
 
 describe('Bulkhead Strategy', () => {
 	let bulkhead: BulkheadStrategy;
@@ -26,35 +26,39 @@ describe('Bulkhead Strategy', () => {
 	});
 
 	describe('process', () => {
-		it('should allow an observable to execute if there is room in the concurrency slots', done => {
+		it('should allow an observable to execute if there is room in the concurrency slots', () => {
 			const observable = of('test').pipe(take(1));
 
-			bulkhead.process(observable).subscribe(value => {
-				expect(value).toEqual('test');
-				done();
+			return new Promise<void>(resolve => {
+				bulkhead.process(observable).subscribe(value => {
+					expect(value).toEqual('test');
+					resolve();
+				});
 			});
 		});
 
-		it('should enqueue an observable if there is no room in the concurrency slots but there is room in the queue slots', done => {
+		it('should enqueue an observable if there is no room in the concurrency slots but there is room in the queue slots', () => {
 			const observable1 = of('test1').pipe(take(1));
 			const observable2 = of('test2').pipe(take(1));
 			const observable3 = of('test3').pipe(take(1));
 
-			bulkhead.process(observable1).subscribe(value => {
-				expect(value).toEqual('test1');
+			return new Promise<void>(resolve => {
+				bulkhead.process(observable1).subscribe(value => {
+					expect(value).toEqual('test1');
 
-				bulkhead.process(observable2).subscribe(value => {
-					expect(value).toEqual('test2');
+					bulkhead.process(observable2).subscribe(value => {
+						expect(value).toEqual('test2');
 
-					bulkhead.process(observable3).subscribe(value => {
-						expect(value).toEqual('test3');
-						done();
+						bulkhead.process(observable3).subscribe(value => {
+							expect(value).toEqual('test3');
+							resolve();
+						});
+
+						expect(bulkhead['queue'].length).toEqual(1);
 					});
 
-					expect(bulkhead['queue'].length).toEqual(1);
+					expect(bulkhead['queue'].length).toEqual(0);
 				});
-
-				expect(bulkhead['queue'].length).toEqual(0);
 			});
 		});
 

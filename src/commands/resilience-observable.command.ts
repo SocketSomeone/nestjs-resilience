@@ -1,7 +1,7 @@
 import { catchError, Observable, tap } from 'rxjs';
 
-import { BaseCommand, ReturnTypeOfRun } from './base.command';
-import { ResilienceEventType } from '../enum';
+import { BaseCommand, ReturnTypeOfRun } from './base.command.js';
+import { ResilienceEventType } from '../enum/index.js';
 
 export abstract class ResilienceObservableCommand extends BaseCommand {
 	public abstract run(...args: any[]): Observable<any>;

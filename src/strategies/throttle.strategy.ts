@@ -1,10 +1,10 @@
 import { from, Observable, switchMap, throwError } from 'rxjs';
 
-import { ResilienceStatesManager } from '../resilience.states-manager';
-import { ThrottlerException } from '../exceptions';
-import { ThrottleOptions } from '../interfaces';
-import { Strategy } from './base.strategy';
-import { BaseCommand } from '../commands';
+import { ResilienceStatesManager } from '../resilience.states-manager.js';
+import { ThrottlerException } from '../exceptions/index.js';
+import { ThrottleOptions } from '../interfaces/index.js';
+import { BaseCommand } from '../commands/index.js';
+import { Strategy } from './base.strategy.js';
 
 export class ThrottleStrategy extends Strategy<ThrottleOptions> {
 	private static readonly DEFAULT_OPTIONS: ThrottleOptions = {

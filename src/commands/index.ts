@@ -1,3 +1,3 @@
-export * from './base.command';
-export * from './resilience-observable.command';
-export * from './resilience.command';
+export * from './base.command.js';
+export * from './resilience-observable.command.js';
+export * from './resilience.command.js';

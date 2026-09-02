@@ -1,7 +1,7 @@
 import { of, tap } from 'rxjs';
 
-import { retryStrategy } from './fixtures/strategy.fixture';
-import { ResilienceObservableCommand } from '../../src';
+import { ResilienceObservableCommand } from '../../src/index.js';
+import { retryStrategy } from './fixtures/strategy.fixture.js';
 
 class TestObservableCommand extends ResilienceObservableCommand {
 	private count = 0;
@@ -22,17 +22,19 @@ class TestObservableCommand extends ResilienceObservableCommand {
 }
 
 describe('Resilience Observable Command', () => {
-	it('should be able to retry an observable', done => {
+	it('should be able to retry an observable', () => {
 		const command = new TestObservableCommand([retryStrategy]);
 		const observable = command.execute();
 
-		observable.subscribe({
-			next: value => {
-				expect(value).toBe(1000);
-			},
-			complete: () => {
-				done();
-			}
+		return new Promise<void>(resolve => {
+			observable.subscribe({
+				next: value => {
+					expect(value).toBe(1000);
+				},
+				complete: () => {
+					resolve();
+				}
+			});
 		});
 	});
 });

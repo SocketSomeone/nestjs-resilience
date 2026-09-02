@@ -1,7 +1,7 @@
 import { Logger } from '@nestjs/common';
 import { Observable } from 'rxjs';
 
-import { BaseCommand } from '../commands';
+import { BaseCommand } from '../commands/index.js';
 
 export abstract class Strategy<Options = any> {
 	protected readonly name = this.constructor.name;
@@ -19,7 +19,7 @@ export abstract class Strategy<Options = any> {
 	}
 
 	public updateOptions(options: Options): void {
-		this.options = Object.assign(this.options, options);
+		this.options = Object.assign(Object(this.options), options);
 	}
 
 	public getOptions(): Options {

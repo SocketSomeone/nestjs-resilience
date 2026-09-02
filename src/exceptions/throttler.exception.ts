@@ -1,4 +1,4 @@
-import { ResilienceRuntimeException } from './resilience-runtime.exception';
+import { ResilienceRuntimeException } from './resilience-runtime.exception.js';
 
 export class ThrottlerException extends ResilienceRuntimeException {
 	public constructor() {

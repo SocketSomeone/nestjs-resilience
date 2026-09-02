@@ -1,2 +1,2 @@
-export * from './circuit-breaker-state.enum';
-export * from './resilience-event-type.enum';
+export * from './circuit-breaker-state.enum.js';
+export * from './resilience-event-type.enum.js';

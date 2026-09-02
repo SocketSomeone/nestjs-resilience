@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
-import { HealthCheckFailedException, HealthCheckStrategy } from '../../src';
+import { HealthCheckFailedException, HealthCheckStrategy } from '../../src/index.js';
 
 describe('HealthCheckStrategy', () => {
 	const observable = new Observable<number>();

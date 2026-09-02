@@ -1,5 +1,5 @@
-import { ResilienceEventType } from '../enum';
-import { BaseCommand } from '../commands';
+import { ResilienceEventType } from '../enum/index.js';
+import { BaseCommand } from '../commands/index.js';
 
 export interface ResilienceEvents {
 	[ResilienceEventType.Emit]: [command: BaseCommand];

@@ -1,6 +1,6 @@
 import { Observable, of } from 'rxjs';
 
-import { ThrottleOptions, ThrottlerException, ThrottleStrategy } from '../../src';
+import { ThrottleOptions, ThrottlerException, ThrottleStrategy } from '../../src/index.js';
 
 describe('ThrottlerStrategy', () => {
 	describe('constructor', () => {
@@ -50,15 +50,15 @@ describe('ThrottlerStrategy', () => {
 
 		it('should return the observable', async () => {
 			const observable = of(1);
-			const result = strategy.process(observable, null);
+			const result = strategy.process(observable, null!);
 			await expect(result.toPromise()).resolves.toBe(1);
 		});
 
 		it('should throw error if limit is reached', () => {
 			const observable = new Observable<number>();
-			strategy.process(observable, null);
-			strategy.process(observable, null);
-			strategy.process(observable, null).subscribe({
+			strategy.process(observable, null!);
+			strategy.process(observable, null!);
+			strategy.process(observable, null!).subscribe({
 				error: error => expect(error).toBeInstanceOf(ThrottlerException)
 			});
 		});

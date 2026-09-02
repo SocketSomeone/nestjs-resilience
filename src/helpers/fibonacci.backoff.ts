@@ -1,4 +1,4 @@
-import { Backoff } from './base.backoff';
+import { Backoff } from './base.backoff.js';
 
 export class FibonacciBackoff extends Backoff {
 	public *getGenerator(maxRetries: number): Generator<number, void, number> {

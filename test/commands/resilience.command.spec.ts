@@ -1,5 +1,5 @@
-import { ResilienceCommand, ResilienceEventBus, ResilienceEventType } from '../../src';
-import { retryStrategy } from './fixtures/strategy.fixture';
+import { ResilienceCommand, ResilienceEventBus, ResilienceEventType } from '../../src/index.js';
+import { retryStrategy } from './fixtures/strategy.fixture.js';
 
 class TestCommand extends ResilienceCommand {
 	private count = 0;
@@ -33,12 +33,12 @@ describe('Resilience Command', () => {
 	const command = new TestCommand([retryStrategy]);
 	const eventBus = ResilienceEventBus.getInstance();
 
-	let callback = jest.fn();
+	let callback = vi.fn<() => void>();
 
 	beforeEach(() => {
 		command.setCount(0);
 		command.setIsError(false);
-		callback = jest.fn();
+		callback = vi.fn<() => void>();
 	});
 
 	it('should be able to retry a promise', async () => {
@@ -54,11 +54,7 @@ describe('Resilience Command', () => {
 		command.setIsError(true);
 		eventBus.on(ResilienceEventType.Failure, callback);
 
-		try {
-			await command.execute();
-		} catch (error) {
-			expect(error.message).toBe('Test');
-			expect(callback).toHaveBeenCalled();
-		}
+		await expect(command.execute()).rejects.toThrow('Test');
+		expect(callback).toHaveBeenCalled();
 	});
 });
