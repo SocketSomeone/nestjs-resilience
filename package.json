@@ -78,7 +78,7 @@
 		"@types/node": "26.6.5",
 		"@vitest/coverage-v8": "5.0.5",
 		"eslint": "^10.0.0",
-		"eslint-plugin-perfectionist": "5.12.1",
+		"eslint-plugin-perfectionist": "5.13.0",
 		"eslint-plugin-prettier": "5.5.7",
 		"husky": "9.1.7",
 		"lint-staged": "17.6.0",
